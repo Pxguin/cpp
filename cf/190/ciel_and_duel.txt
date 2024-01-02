@@ -1,0 +1,22 @@
+Two scenarios:
+either kill all the cards, or don't kill all the cards
+
+Scenario 1: this means that all cards must be attacked, including the defensive cards.
+Scenario 2: attacking defense cards is useless, so only attack the offensive cards.
+
+Scen1:
+Go through all of Jiro's defense cards and try to kill them all. The optimal strategy is to pick Ciel's lowest card that beats each of Jiro's cards. 
+  - This can be done by sorting Ciel's cards high to low, and Jiro's defensive cards low to high, and running 2p.
+  - It is important to store a visited list for Ciel's cards.
+Then, try to kill all of Jiro's attacking cards. First determine whether all of the cards can even be killed - if not, then scenario 2 is always more effective.
+  - This is because order doesn't matter. The sum is always (sum of Ciel's remaining cards - sum of Jiro's attacking cards), so it suffices to just determine if Ciel's cards can beat Jiro's.
+  - Sort Ciel's cards high to low, and Jiro's attacking cards high to low, and run 2p.
+  - If Jiro's cards can be killed, then simply take the sum; otherwise, scenario 1 is useless as scenario 2 will always be better.
+
+Scen2:
+Try to kill all of Jiro's attacking cards to deal maximum possible damage (i.e. ignore the defensive cards). 
+  - Optimally, pair Ciel's highest card against Jiro's lowest card. 
+  - Either Jiro or Ciel will run out of cards first, when this occurs the fight basically ends.
+  - This can be done by sorting Ciel's cards high to low and Jiro's attacking cards low to high, and running 2p.
+
+Finally, take the maximum of the two answers.
