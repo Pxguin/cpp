@@ -1,0 +1,16 @@
+How do you express the sum of two numbers by only knowing their AND and OR values?
+
+It is express as (2(a&b) + a^b);
+which can be simplified to (a&b + a|b).
+
+If you want to calculate (a^b), it is:
+(~(a&b) & (a|b)), or alternatively, (a|b - a&b).
+
+Ok, but if you know the sum of any two numbers, how does that help?
+A system of equations can help determine the actual values of numbers.
+ - Specifically, given a, b, c, we can calculate a+b, b+c, and c+a in 6 queries. Treating a+b as ab, b+c as bc, and c+a as ca, the value of a is (ab+bc+ca)/2-bc, or more simply, (ab+ca-bc)/2.
+
+Using this fact, it becomes easy to calculate a, b, and c. From here, just query the sum of c and d in two queries; because you know the value of c, then calculating the value of d becomes easy.
+- Because you only have to know the sum of each pair, and the sum requires two queries, it takes 2n queries, which fits under the constraints.
+
+Knowing all the numbers, you can just sort them and take the kth number.
