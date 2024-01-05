@@ -18,4 +18,3 @@ A vector of 10^14 storing every single position is just too much, so there needs
 So instead of calculating all positions, you simply store the amount of L's, R's, U's, and D's at any given day.
  - This works because the wind works in a cycle. When you reach the end, you just start back at the beginning.
  - Therefore, we can just calculate the amount of distance traveled up, down, left, and right using these sums, and then add them to the start point to find the end point.
- - From here, we can just test the above algorithm to check if it works.
