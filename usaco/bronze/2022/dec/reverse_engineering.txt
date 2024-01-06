@@ -1,0 +1,19 @@
+We can try to build Elsie's program line by line. 
+To do this, observe that every statement takes in the value of some character in a fixed position and returns 0 or 1 depending on its value. 
+For it to be consistent, there must exist some position in the string, where all the input strings that return 0 have the same character, and where the ones that return 1 have the same and opposite character.
+
+For example, if 001 and 010 return 1 and 100 and 101 return 0, then;
+in position 1, the two strings returning 1 share a 0, while the two strings returning 0 share a 1.
+
+This is our first statement, and now we erase those strings, because they will not be considered for future if statements if they pass the first one. 
+ - If at any point all remaining strings return 0 or 1, then it still works - this can be treated as the "else" statement.
+
+Here is the final algorithm:
+ - First, split up all strings returning 0 and 1 into two sets.
+ - While both sets aren't empty, iterate through all characters and find one that is shared in all '0' strings and not shared in any '1' strings.
+ - If such character is found, erase all '0' strings that have that character and all '1' strings that do not.
+ - If no character is found, then it fails.
+ - If after this, one or both of the sets are empty, then the program passes. Otherwise, continue the process.
+
+This runs in O(N^2). 
+(the code is old, so it lacks optimization. also I think there is an error in it, but it still passes)
