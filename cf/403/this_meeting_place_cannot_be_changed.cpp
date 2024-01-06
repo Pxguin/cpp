@@ -24,7 +24,6 @@ bool check(ld t) {
 
 int main() {
     ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
-    freopen("in","r",stdin);
     cin >> n;
     spd.resize(n);
     dist.resize(n);
