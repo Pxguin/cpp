@@ -1,0 +1,9 @@
+The variable of time is monotonic, so we can binary search on it - with less time, the people move less, and vice versa.
+
+To binary search on time, we need to set up the low, mid, and high as long doubles. Instead of ending the loop when low > high, we run to loop X amount of times to amass more precision (100 should work).
+ - Also, setting low to mid+1 and high to mid-1 will not work, because they are double values. Instead, we set low and high just to mid.
+
+Having the binary search, it remains to check if the answer works. We can do this by calculating the maximum distance able to be traveled by each person given the amount of time (a segment [L, R]).
+If all these segments intersect at any point, then the answer is valid. 
+
+To do this, we want to store the maximum L and the minimum R (the intersection of all segments), and check if MAX_L <= MIN_R. If so, that means that the intersection is valid, and if not, then that means the intersection is empty.
