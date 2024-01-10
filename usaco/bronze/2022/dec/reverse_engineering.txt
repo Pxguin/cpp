@@ -1,12 +1,12 @@
 We can try to build Elsie's program line by line. 
 To do this, observe that every statement takes in the value of some character in a fixed position and returns 0 or 1 depending on its value. 
-For it to be consistent, there must exist some position in the string, where all the input strings that return 0 have the same character, and where the ones that return 1 have the same and opposite character.
+For it to be consistent across all inputs, there must exist some position in the string, where all the input strings that return 0 have the same character, and where the ones that return 1 have the same and opposite character.
 
 For example, if 001 and 010 return 1 and 100 and 101 return 0, then;
 in position 1, the two strings returning 1 share a 0, while the two strings returning 0 share a 1.
 
 This is our first statement, and now we erase those strings, because they will not be considered for future if statements if they pass the first one. 
- - If at any point all remaining strings return 0 or 1, then it still works - this can be treated as the "else" statement.
+ - If at any point all remaining strings return 0 or 1 (but don't necessarily share any characters), then it still works - this can be treated as the "else" statement.
 
 Here is the final algorithm:
  - First, split up all strings returning 0 and 1 into two sets.

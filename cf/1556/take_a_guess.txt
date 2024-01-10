@@ -13,4 +13,4 @@ A system of equations can help determine the actual values of numbers.
 Using this fact, it becomes easy to calculate a, b, and c. From here, just query the sum of c and d in two queries; because you know the value of c, then calculating the value of d becomes easy.
 - Because you only have to know the sum of each pair, and the sum requires two queries, it takes 2n queries, which fits under the constraints.
 
-Knowing all the numbers, you can just sort them and take the kth number.
+After finding all the numbers, you can just sort them and take the kth number.

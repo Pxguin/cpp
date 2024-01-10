@@ -1,4 +1,0 @@
-To get the least amount of cows in the line, the cows with the highest w value should join first.
-
-Therefore, just sort the cows by w value, highest to lowest, and iterate over them until one cow becomes unhappy.
-Because it is sorted high to low, then every cow after that will also be unhappy.
