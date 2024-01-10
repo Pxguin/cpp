@@ -1,0 +1,5 @@
+For all barns to be connected, they all have to be in the same connected component.
+So for every closure, just DFS to find the amount of barns in this component. 
+ - If it is equal to the amount of open barns, then it works.
+ - Make sure to always start the DFS at an open barn. You can use an unordered set for this, and for every closure remove that barn from the set. DFS on the first number in the set.
+ - Make sure to avoid visiting closed barns in the DFS. This can be achieved by storing whether every barn is open or closed, and simply checking it when traversing edges.
