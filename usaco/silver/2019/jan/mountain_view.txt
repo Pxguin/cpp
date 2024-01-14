@@ -1,0 +1,15 @@
+We want to find the number of mountains that are not contained within each other. 
+ - Because all mountains are 45-45-90 triangles, we can work with the base intervals of every mountain without worrying about loss of information.
+ - The base interval refers to the starts and ends of a mountain. A mountain with peak (4, 5) has an interval of [-1,9].
+ - We can determine that for a mountain to be contained inside another mountain, its interval must be contained within another interval.
+
+(L = mountain start, R = mountain end)
+Observe that to be contained in a mountain, the L value must be greater than or equal to another mountain's L value. So we can sort a list containing the L of every mountain, and only check the R values.
+ - We always compare a new mountain to the current mountain with the largest R value (we only care about the R values, the sorting accounts for the L values).
+
+There are still two cases to consider:
+ - What if two mountains have the same R value?
+ - What if two mountains have the same L value?
+
+If two have the same R value, it doesn't matter - one of them must be contained inside the other, because they have distinct L values.
+If two have the same L value, then we will take the one with the larger R value. Note that one mountain will always be contained inside the other, and cannot be seen.
