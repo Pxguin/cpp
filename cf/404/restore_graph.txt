@@ -1,0 +1,21 @@
+Firstly, the vertex that Valera chose will have distance 0. If multiple nodes have distance 0, then it doesn't work.
+
+The constraint on K is pretty trivial (only serving as a fail condition), so let's first imagine the problem without the K constraint. How would we build the graph?
+
+Test case:
+3 2
+0 1 1
+- We know the chosen node is node 1. 
+- The second node is 1 away from node 1, so we create an edge from 1 to 2. 
+- The third node is also 1 away from node 1. If we attach it to node 2, then it will be 2 away. Therefore, we attach it to node 1.
+
+A pattern quickly emerges from these test cases: for each node, you have to attach it to a node D-1 away from the node for it to be D away.
+Also, because this problems only involves shortest paths, it means that cycles are pointless. So, this graph is a tree.
+Adding back the K constraint isn't hard (but make sure to deal with the case where K = 1).
+
+So here is the solution:
+ - Sort all nodes from low to high, based on distance.
+ - If there is not exactly one node with distance 0, then it fails.
+ - Go through the rest of the nodes, and for each one, find a node with distance D-1, and build an edge between these nodes. If no node is found, then no graph can be built.
+ - If that node is now adjacent to K nodes, then don't allow it to connect to any more nodes.
+ - To deal with the K=1 case: if the new node is adjacent to K nodes, then don't allow it to connect to any more nodes.
