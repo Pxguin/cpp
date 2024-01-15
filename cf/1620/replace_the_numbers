@@ -1,0 +1,23 @@
+Processing the numbers as given is too slow. When we reach a query, we have to modify every number before it, resulting in a very slow solution. 
+
+It turns out that this actually reveals the answer. What if we processed all the queries in reverse? That way, we would process everything before each change now after them, resulting in an O(N) solution.
+We still need to figure out how to change each number. This can be done by storing a map and looking it up for each number. Initially, we would set every number in the map to itself (3 -> 3, 2 -> 2, etc.).
+
+To account for nested type 2 queries:
+
+Ex:
+1 2
+2 3
+1 indirectly leads to 3
+
+we simply set map[x] to map[y]. 
+In this case, we first process the query "2 3", so map[2] = map[3] = 3. Then we process the query "1 2", so map[1] = map[2] = 3.
+
+
+
+Extra (this is my original idea for the mapping process):
+
+if (map[a[i].s] != a[i].s && map[a[i].s] != 0) {
+    map[a[i].f] = map[a[i].s];
+} else {map[a[i].f] = a[i].s;}
+It relies on the fact that we can unravel a chain of maps (1 -> 2, 2 -> 3, 3 -> 4, etc.) by only checking the number two mappings away. But the else statement is redundant because it only runs if map[a[i].s] = a[i].s.
