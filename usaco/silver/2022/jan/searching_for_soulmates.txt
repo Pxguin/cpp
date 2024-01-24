@@ -1,0 +1,10 @@
+To solve this problem, we need to make a few observations.
+
+1: As long as A > B, we must keep adding and dividing.
+2: When A <= B, then we must use addition, division, and multiplication.
+However, the problem is that it is hard to greedily determine what operation to use. The optimal strategy can be determined to be dividing X times after A <= B, then adding and multiplying after (the issue is that X is unknown).
+
+So why don't we try all possible combinations of X? The small bounds allow for this. We continuously divide the first number until it reaches the lower limit of 1. 
+If A <= B, we calculate the amount needed to get A to B with only multiplication and division, and take the minimum.
+ - When you divide by X times, you will, in total, multiply by X times to get as close as possible to B. This means that each addition operation can add any power of 2 up to 2^X. 
+ - So we can just take the binary representation of B-2^X*A, and find out the amount of operations needed by going over the bits.
