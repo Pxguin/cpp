@@ -1,0 +1,10 @@
+Logically, the answer is the maximum X for every element,
+ - where X is the amount of times 'moo' is printed until this element gets into its desired position.
+
+But it is somewhat difficult to compute the position because there can be repeated elements.
+ - To solve this, observe that distinct elements will be in the same order at the end as they started.
+ - So we can do coordinate compression to convert the element into distinct numbers.
+ - As an example, 1 2 1 becomes 1 3 2
+
+So then:
+ - If the element is to the left of the desired position, it 

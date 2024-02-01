@@ -1,0 +1,12 @@
+It seems that we have to iterate through all N rounds, so we cannot iterate through every monster for each round.
+ - This would be O(N^2).
+
+We first notice that we don't have to recompute damage taken by each monster every round. 
+ - If we treat the defense as negative damage, then we can first precompute all damage taken (i.e. net damage).
+ - Then, we observe that all monsters with net damage > 0 will die.
+ - For each of the monsters, it will no longer deal damage to its left and right neighbors (because this monster has died).
+ - So the two neighbors will now deal damage to each other, and we account for that too.
+
+This is a working solution, but we can make it faster. T
+ - The only values that change are the neighbors of all the monsters that die that round.
+ - So we can simply store a list of all the neighbors every round, and those are the only monsters that we have to check for the next round.
