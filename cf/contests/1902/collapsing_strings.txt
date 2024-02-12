@@ -1,0 +1,14 @@
+Observe that the maximum that two strings will collapse by the third rule (back letter = front letter) is how much the prefix of string A equals the reversed suffix of string B.
+ - So we can reverse one of the strings, and then find the longest prefix that both of them share.
+
+This leads us to the solution of building a tree on all the strings: more formally, a trie. This would let us search, for every string, which other ones share the same prefix.
+
+
+I ran into a couple issues when implementing this idea:
+ - How do you implement it efficiently? My initial idea was to store a list of size N and while doing the DFS calculate the values for all N, but that takes too much time.
+ - It turns out that you can simply use complementary counting. The amount of characters that don't work is simply the sum all the prefixes*2.
+
+ - How do you efficiently figure out which nodes "branch out" (stop sharing a prefix at some point)?
+     - Now, we can just store a subtree sum for every node. If sum[nextNode] > sum[curNode] then obviously some nodes have branched off.
+
+ - There were also issues with reaching the end of the reversed string, having the reversed string not exist in the tree, and integer overflow.
