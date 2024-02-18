@@ -1,6 +1,0 @@
-The easiest way to simulate the operations is to store one long branch, and have the minimum distance be between the root node and the end of the branch. 
- - To shorten or lengthen the branch, we can mvoe them to another branch.
-
-We can root the tree at node 1 and then have our second branch start at node 2. If the distance between node 1 and the end of the first branch is equal to d, then that query's answer is "-1 -1 -1".
-
-If it is less than d, then we must move nodes from branch 2 to branch 1, and if it is greater than d, we must move nodes from branch 1 to branch 2.
