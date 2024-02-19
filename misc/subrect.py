@@ -10,7 +10,6 @@ maxSum = 0
 currentSum = 0
 toAdd = []
 
-
 for iter, num in enumerate(rectangleInput.split(" ")[2:]):
     rectangles[iter//3].append(int(num))
 
