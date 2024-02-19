@@ -76,16 +76,4 @@ int main() {
         ans += comp*(k-comp);
     }
     cout << ans/2 << "\n";
-
-    /*
-     * how to store graph and roads?
-     * simple list should work.
-     * need to store in a 2d array
-     */
-
-    /*
-     * store the amount of cows in each square;
-     * when flood filling for components add a sum for every component;
-     * check every component against every component to get ans
-     */
 }
