@@ -1,9 +1,3 @@
-"""
-ID: arihaow2
-LANG: PYTHON3
-TASK: friday
-"""
-
 fin = open("friday.in", 'r')
 fout = open("friday.out", 'w')
 
