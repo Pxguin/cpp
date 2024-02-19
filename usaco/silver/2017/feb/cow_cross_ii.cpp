@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// new code (lost the original)
+
 int main() {
 	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 	freopen("maxcross.in","r",stdin); freopen("maxcross.out","w",stdout);
