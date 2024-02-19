@@ -1,22 +1,48 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <fstream>
+#include <vector>
+
 using namespace std;
 
-// new code (lost the original)
-
 int main() {
-	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
-	freopen("maxcross.in","r",stdin); freopen("maxcross.out","w",stdout);
-	int n, k, b; cin >> n >> k >> b;
-	int a;
-	int ps[n+1] = {0};
-	while (b--) {
-		cin >> a;
-		ps[a]++;
-	}
-	for (int i=0;i<n;i++) {ps[i+1] += ps[i];}
-	int ans = k;
-	for (int i=k;i<=n;i++) {
-		ans = min(ans, ps[i]-ps[i-k]);
-	}
-	cout << ans << "\n";
+    ifstream fr;
+    int n,b,k,light;
+    fr.open("maxcross.in");
+    vector<int> signals;
+    
+    fr >> n;fr >> k;fr >> b;
+    for (int i = 0; i < n; i++) {
+        signals.push_back(1);
+    }
+    for (int i = 0; i < b; i++) {
+        fr >> light;
+        signals[light-1] = 0;
+    }
+
+    int minimum = k;
+    int broken = 0;
+    for (int i = 0; i < k; i++) {
+        if (signals[i] == 0) {
+            broken++;
+        }
+    }
+    if (broken < minimum) {
+        minimum = broken;
+    }
+    for (int i = 1; i < n-k+1; i++) {
+        if (signals[i-1] == 0) {
+            broken--;
+        }
+        if (signals[i+k-1] == 0) {
+            broken++;
+        }
+        if (broken < minimum) {
+            minimum = broken;
+        }
+    }
+    fr.close();
+    ofstream fw;
+    fw.open("maxcross.out");
+    fw << minimum;
+    fw.close();
 }
