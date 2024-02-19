@@ -1,3 +1,3 @@
-??? Old, very old code. Also not sure what contests these in nor if some of these are actually ACSL.
+??? Very old code. Also not sure what contests these in nor if some of these are actually ACSL.
 
 Consider this a repository of my early code.
