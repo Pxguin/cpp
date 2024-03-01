@@ -1,0 +1,5 @@
+Consider a brute force. For every point (denoted X) you find all the horizontal segments, and then:
+ - find all the vertical line segments with the same corner X, and add each of the areas to the answer.
+
+This can be optimized by the observation that you can just sum all the line segments for both horizontal and vertical.
+We can find for every point the sum of these line segments with some math.
