@@ -2,31 +2,29 @@
 using namespace std;
 
 #define ll long long
-#define f first
-#define s second
+#define MAX_N 100001
 
-ll dp[100001];
+ll dp[MAX_N];
 
 int main() {
 	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 
-	int n, x; cin >> n >> x;
+	int n; cin >> n;
+	int x[n]; 
 	dp[0] = 1;
-	pair<int,int> b[n];
+	for (int i=0;i<n;i++) {cin >> x[i];}
 
-	for (int i=0;i<n;i++) {cin >> b[i].f;}
-	for (int i=0;i<n;i++) {cin >> b[i].s;}
+	int ans = 0;
 
 	for (int i=0;i<n;i++) {
-		int h = b[i].f, s1 = b[i].s;
-		for (int j=x-h;j>=0;j--) {
+		int c = x[i];
+		for (int j=MAX_N-c-1;j>=0;j--) {
 			if (dp[j]) {
-				dp[j+h] = max(dp[j+h], dp[j]+s1);
+				ans += !(bool)dp[j+c];
+				dp[j+c] = 1;
 			}
 		}
 	}
-	ll mx = 0;
-	for (int i=0;i<=x;i++) {mx = max(mx, dp[i]);}
-	cout << --mx;
-
+	cout << ans << '\n';
+	for (int i=1;i<=MAX_N-1;i++) {if (dp[i]) {cout << i << ' ';}}
 }
