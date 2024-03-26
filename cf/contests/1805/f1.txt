@@ -1,0 +1,26 @@
+Easy solution is to simulate the process N-1 times.
+ - Achieve this by calculating all pairs in (N)(N+1)/2 (I will just use N^2) and taking the smallest N-1 values
+ - Requires sorting, so N^2 log N * N-1 = approximately N^3 log N
+
+Two optimizations:
+ - Integer overflow, because the values at worst exponentially increase (double) every round
+ - Optimize the pairs
+
+1. Pairs
+Note that if we sort the array, then the smallest element is a[0]+a[1].
+Then after that, it may either be a[0]+a[2] or a[1]+a[2].
+After going for a bit, we realize that we can store a monotonically moving pointer for each i from 1 to N.
+We can store a set of all current sums, then take the lowest and increment its pointer by 1, and then add in the new value.
+(sorry for bad explanation, this is more intuitive)
+
+2. Overflow
+We have to figure out some way to reduce the numbers every round.
+To do this, we can use the doubling observation from earlier against itself.
+If we subtract a number x from all numbers in the array, then all sums will be -2x off from the real number.
+ - Then in the next round, they will be -4x off, and so on, exponentially growing every round.
+ - In particular, if the length of the array is N, then the total cost is X*2^(N-1).
+ - We can sum all these values and add this back to the remaining answer at the end.
+
+3. Subproblem of Overflow
+Notice how the formula is X*2^(N-1). The power of 2 will overflow for larger numbers.
+We can solve this by precalculating all powers of 2 mod 1e9+7.
