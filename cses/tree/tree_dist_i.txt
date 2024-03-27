@@ -1,0 +1,18 @@
+We will root the tree arbitrarily.
+Then, for every node, we define two values F and G.
+f(x) is the maximum distance from node x to a node inside the subtree of x. 
+g(x) is the maximum distance from node x to a node outside the subtree of x.
+
+Then, the answer is the maximum of f(x) and g(x).
+
+Calculating f(x):
+This is simply achieved by doing a DFS and building the distances with DP.
+
+Calculating g(x):
+We can do the reverse of f(x).
+For a node x and its children c, g(c) = max(g(x), d(x)),
+where d(x) is the maximum distance in the subtree of x that does NOT go through node c.
+
+If d(x) does not cross node c, then d(x) is simply f(x).
+Otherwise, d(x) is the second longest distance from node x to a node inside the subtree of x.
+We can calculate the second longest distances also during f(x).
