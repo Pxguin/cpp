@@ -1,0 +1,5 @@
+Similar to Rectangular Pasture, I use coordinate compression w/ 2d prefix sums to efficiently calculate any subsum.
+Ths application is much simpler though.
+
+After computation, you can do a complete search on the horizontal and vertical fence and use the prefix sums to
+calculate the sum of the four rectangles.
