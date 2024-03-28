@@ -1,0 +1,25 @@
+The thing that I forgot the most while solving this problem is that words can repeat within sentences,
+and sentences can repeat within a poem.
+
+Firstly, observe that in the structure of the poem, the line order does not matter.
+All we care about are the number of lines for every letter.
+
+This leads us to the conclusion that we want to find the amount of possible lines of poetry ending with every rhyme scheme,
+and then do some math to figure out how to permutate them to get the max amount of poems.
+
+
+Part 1: Finding all lines
+This is a simple DP (repeats allowed, unordered).
+We then can just figure out for every word how many possible sentences end with it,
+and then add it to a list (list X) containing for every rhyme scheme how many sentences are possible.
+
+
+Part 2: Finding all poems
+The amount of poems is simply the product of all the possible rhyme configurations.
+
+Ex. ABA
+The answer is the amount of unique ways to create AA multiplied by the amount of unique ways to create B.
+
+For any given letter, the answer is simply the sum of x^y for all x, where:
+ - x is an element in list X
+ - y is the amount of lines ending with the given letter (AA: y = 2)
