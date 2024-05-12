@@ -1,0 +1,18 @@
+Failed attempts:
+Binary search+DFS/BFS (doesn't work because we are trying to find a minimum minimum)
+Find all cycles and for each edge check if it is in a cycle
+
+DSU: for all edges X (a,b), build a min spanning tree without edge X and then check if edge X forms a cycle
+
+DSU: Build a spanning tree, and for each edge X (a,b), if it makes a cycle then find min of that cycle
+It is the min of (the weight of X, the min of the simple path from a to b)
+Can precalculate this, but takes too much memory
+
+DSU: Build min spanning tree, then for each edge X (a,b), if it makes a cycle then find min of that cycle
+It is the min of the simple path from a to b
+
+Working solution:
+DSU: Build max spanning tree, if edge forms a cycle then find min
+This will be the weight of X, which takes O(1) time
+
+Then BFS to find the cycle
