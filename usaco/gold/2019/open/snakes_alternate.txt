@@ -1,0 +1,10 @@
+dp[i][j] is the minimum amount of space needed after the ith group of snakes with j changes. 
+Then, the answer is dp[n][k]-T, where T represents the total sum of snakes.
+
+dp[i][0] for all i is simply max(1..i)*i.
+
+Then, we can try simulating changing the net size.
+Similar to the base case, dp[j][k+1] = max(dp[j][k+1], dp[i][k]+max(i..j)*(j-i))
+(same logic)
+
+pull and push dp solutions are both in code.
