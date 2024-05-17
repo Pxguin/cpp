@@ -45,16 +45,6 @@ void solve() {
 		rules[i].clear();
 	}
 	cout << ans << '\n';
-	/*for (int i=1;i<mx_n+2;i++) {
-		dp[i] = max(dp[i], dp[i-1]);
-		for (pii x : rules[i]) {
-			dp[x.s+1] = max(dp[x.s+1], dp[i]+x.f);
-		}
-	} int ans = 0;
-	for (int i=0;i<mx_n+2;i++) {
-		ans = max(ans, dp[i]);
-	}
-	cout << ans << '\n';*/
 }
 
 int main() {
