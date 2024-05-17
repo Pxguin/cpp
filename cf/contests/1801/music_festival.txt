@@ -1,0 +1,26 @@
+It may be helpful to compress an album such that it becomes strictly increasing.
+
+If we do this, then we can run dp.
+We first notice that for a given album (a, b, c, d), if the maximum coolness so far is less than a,
+then we gain 4 points (a, b, c, d). Then, the maximum so far becomes d. 
+
+The same logic goes for b, c, and d, with 3, 2, and 1 points gained respectively. 
+Note that the maximum so far will always become d, no matter if we started at track a, b, c, or d.
+
+This means we can do dp. Let dp[i] represent the maximum points so far, given the maximum track is of coolness i-1.
+(i-1 because two tracks must be strictly increasing in coolness to gain 2 points)
+
+Then, we have many total transition states. For a given album of size S, we have S different states.
+This is because following the above logic, an album (a,b,c,d) can end up at max coolness d+1 from tracks a, b, c, and d.
+So dp[d+1] = max(dp[d+1], dp[d]+0, dp[c]+1, dp[b]+2, dp[a]+3);
+
+Here is pseudocode to simulate this process, where rules is the different transition states for a given i.
+for (int i in range max_n) {
+    dp[i] = max(dp[i], dp[i-1]); // base case
+    for (points,mx in rules[i]) {
+        dp[mx+1] = max(dp[mx+1], dp[i]+points);
+    }
+}
+
+But this code times out, because we iterate over MAX_N every time. If the max is 200,000 then it will time out.
+To shorten this, we note there are only at max k event points (all the songs in each album). With a set, it shortens to O(KlogK).
