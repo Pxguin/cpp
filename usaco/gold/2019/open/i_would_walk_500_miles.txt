@@ -14,6 +14,7 @@ For the first case, we still have N-2/N-3 components; for the latter, we have N-
 As we continue, we will eventually reach a point where we only have K components.
 
 This can be simplified to building a minimum spanning tree of the graph:
+ - We start with N components.
  - This ensures that every edge added must join two nodes in different components together.
  - Logically, there will always be K remaining components after N-K operations, no matter the order in which they were connected.
  - Because we add the minimum edge every time, it will optimally form groups.
