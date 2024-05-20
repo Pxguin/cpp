@@ -1,0 +1,21 @@
+We should have a graph with each distance between cows; however, 
+there is no need to allocate the memory because the edge weights can be determined in O(1) by the function.
+
+
+Consider the case when K = 2.
+Also, note that it is always optimal to connect the two nodes with the minimum edge weight between them.
+
+If we treat the graph as having N components, then adding the minimum edge will always connect two nodes together.
+So now, we have N-1 components.
+Adding the next edge will similarly connect two edges together, resulting in N-2 or N-3 components.
+
+The next edge can either connect two nodes in an existing component, or add a node to a new component.
+For the first case, we still have N-2/N-3 components; for the latter, we have N-3/N-4.
+As we continue, we will eventually reach a point where we only have K components.
+
+This can be simplified to building a minimum spanning tree of the graph:
+ - This ensures that every edge added must join two nodes in different components together.
+ - Logically, there will always be K remaining components after N-K operations, no matter the order in which they were connected.
+ - Because we add the minimum edge every time, it will optimally form groups.
+
+So the problem is simplified to finding the (N-K)th largest edge in a MST of the graph, which can be built with Prim's algorithm.
