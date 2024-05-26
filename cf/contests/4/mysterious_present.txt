@@ -1,0 +1,8 @@
+Eliminate all envelopes smaller than the card. Also add in Peter's card as an envelope.
+Then build a graph with edges from i to j if envelope i fits in envelope j.
+
+We then have to find the longest path from the card to any other envelope. 
+The resulting graph is a DAG, so do a topological sort and then calculate all distances.
+
+Alternatively, you could do dp. To effectively calculate transitions, the envelopes should all be sorted in increasing order.
+dp[i] represents max envelopes in a chain with envelope i at the end.
