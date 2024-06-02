@@ -1,0 +1,10 @@
+First, we should do binary search on the answer.
+Having a bridge basically implies that there is no cycle involving that edge.
+The maximum amount of edges without cycles is just a tree (n-1 edges)
+ - so the upper bound should be 2n-2 (because at least half of the edges need to be bridges)
+
+To check, we first dedicate n-1 edges and n vertices to building a tree (shape does not matter).
+Then, we need to find out how to add the most edges with the remaining nodes.
+Clearly, we should build a fully connected graph involving the remaining nodes and one of the nodes in the tree.
+ - This is the maximum amount of edges that we can add without creating any cycles.
+If the max edges is greater than our current number x, then it works.
