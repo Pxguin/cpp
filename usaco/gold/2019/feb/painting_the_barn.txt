@@ -1,0 +1,7 @@
+1. 2d prefix sums to calculate # of layers for each unit
+2. Convert to array of -1 and 1, 1 if current square has k-1 layers, 1 if it has k layers, 0 otherwise
+3. The problem becomes finding a max subarray sum (if we were to paint one rectangle)
+4. To paint two, consider that two disjoint rectangles have a vertical or horizontal line in between
+5. Basically, the 2d subarray sum algorithm iterates through all left and right boundaries
+6. Extend this to store for each vertical/horizontal line the max rectangle to the left and right of it
+7. Then take the maximum for every line
