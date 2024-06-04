@@ -1,0 +1,19 @@
+We can use an approach similar to Kadane's algorithm for a 2d subarray.
+This involves fixing two borders and calculating the answer for the values in between.
+We should set values >= 100 to 1, and < 100 to 0. In my code I set values = 100 as 1 and > 100 as 2.
+
+For a given border range, we can calculate the amount of subgrids as follows:
+ - Take the union of the cells >= 100 for all rows inside the border.
+ - For example, row 1 is 11, row 2 is 10, union is 10
+ - This basically sets left and right boundaries for possible subgrids in that range.
+
+ - For a given subgrid to be valid though, the minimum must be 100 exactly.
+ - Thus, we keep all values = 100, and for each one calculate the amount of valid subgrids with it.
+ - Because the left and right boundaries of the range have been calculated through the union,
+   we can for each 100 value find the left and right of the range it is contained it, and use this to find the subgrids.
+ - The amount of subgrids is simply (R-i+1)*(i-L+1), where R and L are the boundaries.
+ - To avoid duplicates, we use R as the right boundary of the range and L as the nearest 100 value to the left.
+
+However, this yields an O(N^4) solution. To speed this up to O(N^3), we realize:
+ - We can optimize the N^2 part of fixing two borders.
+ - Instead of two, we can fix just one and incrementally calculate the answer for all second borders in O(N^2).
