@@ -1,0 +1,6 @@
+We can try changing every number, then finding the max gcd for that number.
+
+If we consider the gcd as a union of prime factors, then we need to find the maximum number that is the product of
+a subset of the prime factors and <= 1e9.
+But the GCD is always <= 1e9, so the max gcd for changing a number X is just the GCD of all the other numbers.
+We can use prefix and suffix sums to precalculate these quantities, and std::gcd to shorten the code.
