@@ -1,0 +1,31 @@
+If we build a graph between particles where bidirectional edges indicate if a particle can interact with another particle,
+then the answer is simply to count the number of connected components.
+(We can prove that a connected component can always result in one moo particle).
+However, there can be at most N^2 edges, which is too much for the time limit.
+
+An optimization would involve being able to figure out which particles another can interact with.
+If we sort the particles by x and then by y, then for particles i, j, where i < j, we guarantee that the x of j >= x of i.
+Therefore, we just have to check whether the y of j >= y of i. We can do this by storing a set with all the current y values, resulting in a logN lookup.
+The maximum y value that it can interact with is obviously its current y-value, and the minimum it can interact with is the minimum y value so far.
+This creates a range it can interact with [mn, y].
+
+Second, if two ranges intersect, then they must belong to the same connected component.
+Thus, for every range we check against every other range to see if they intersect, and if they do, we combine them into a larger range.
+So for all ranges with y2 >= x1 && x2 <= y1, combine ranges 1 and 2.
+
+This still can take O(N^2logN) time though; for all N, we first have to sort by l, then for all particles with l <= r we sort those by r.
+(l and r are the two ends of the ranges)
+Here is some code demonstrating this, where ranges is the current vector of ranges.
+sort(range.begin(),range.end(),greater<pii>());
+auto idx = upper_bound(range.rbegin(),range.rend(),mp(r,INT_MAX));
+sort(range.rbegin(), idx, [&](const pii& a, const pii& b) {return a.s < b.s;});
+while (range.size() && range.back().f <= r && range.back().s >= l) {
+    l = min(l, range.back().f); r = max(r, range.back().s); range.pop_back();
+}
+
+To speed this up, note that for every new range, it is [mn, y]. Thus, we actually only have to check x2 <= y1,
+because we guarantee that y2 >= x1 (as x1 is always the minimum so far).
+So we can use a multiset instead of a vector, and avoid the costly sorting to get a final time of O(NlogN).
+
+(as a side note, we can use a set instead of multiset to speed it up a bit more because multiset has a worse constant factor).
+(and also, this will not affect the answer)
