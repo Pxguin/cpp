@@ -1,0 +1,13 @@
+Finding the lexicographically minimum toposort fails, because here we are trying to minimize the labels, not the nodes.
+
+Consider the following example:
+3 nodes, 1 edge (3 -> 1).
+Kahn's algorithm produces 3 1 2, but the minimum is 2 3 1. This is because node 2 is considered before node 3, and thus before node 1.
+Instead, we want to find an algorithm that considers node 3 before node 1, and then node 2.
+
+We can do this by reversing the edges and sorting the priority queue in descending order, 
+as this will always end up marking earlier nodes with smaller labels (by putting them at the end of the queue).
+Note that we also have to assign the labels N...1 instead of 1...N.
+
+It will not disrupt cases such as:
+3 nodes, 1 edge (3 -> 1, 2 -> 3) because this always forces 1 to be visited before 3 and thus does not change the order.
