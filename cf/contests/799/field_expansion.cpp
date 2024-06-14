@@ -53,14 +53,10 @@ int main() {
 	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 
 	int a, b, h, w; cin >> a >> b >> h >> w >> n;
-	if (a>b) {swap(a,b);}
-	if (h>w) {swap(h,w);}
-	int ext2[n];
-	F0R(i,n) {cin >> ext2[i];}
-	sort(ext2,ext2+n,greater<int>());
-	F0R(i,min(n,34)) {ext.pb(ext2[i]);} n = sz(ext);
-	calc(a,b,h,w);
-	calc(b,a,h,w);
-	if (ans == LLONG_MAX) {ans = -1;}
-	cout << ans << '\n';
+	ext.resize(n);
+	F0R(i,n) {cin >> ext[i];}
+	sort(ext.begin(),ext.end(),greater<int>());
+	n = min(n,34);
+	calc(a,b,h,w); calc(b,a,h,w);
+	cout << (ans == LLONG_MAX ? -1 : ans) << '\n';
 }
