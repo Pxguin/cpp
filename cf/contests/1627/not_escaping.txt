@@ -1,0 +1,6 @@
+All that matters is the endpoints of the ladders, so we treat those two as nodes and then find all possible edges.
+In my code, I compress them down to a 1d array. Then, we run Dijkstra.
+
+However, the ladders have negative edge weights. To solve this, we can instead calculate the min distance to reach
+every floor instead of every node, thus ensuring the negative weights are considered at the start of every Dijkstra.
+To implement this, I store a priority queue for every floor and iterate through them, so N dijkstras in total.

@@ -1,0 +1,13 @@
+First, we only have to consider 34 extensions, because log2 100000 rounds up to 17, and there are two sides.
+ - Clearly, we want the largest 34.
+We also need to consider if we want to rotate the original field before expansion.
+ - It may seem like we want to match the shorter sides to the shorter sides and vice versa, but this actually doesn't work.
+ - There might be a faster solution, but we can simply just try both orientations and take the minimum.
+ - Here is a test case illustrating this: 43829 19653 2 1 34; all extensions are 4
+ - Matching 43829 to 2, it takes 16, but matching it to 1 it only takes 15.
+
+We can then use knapsack dp to find all possible subsets. However, two issues remain:
+1) How do we ensure we use the minimum amount of extensions, given we can't store all the subsets?
+2) How do we calculate the second factor (width/height) given the first?
+
+
