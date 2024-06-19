@@ -1,3 +1,6 @@
+(Another hard problem for me... was so close to solving it by myself, missed a single condition for case 2)
+(the parent of the two node is white)
+
 We arbitrarily root the tree at node 1 and add a root node connecting to node 1.
 Then all we need to store are the number of black children (yikes) for every node.
 
