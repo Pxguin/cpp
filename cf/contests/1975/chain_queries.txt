@@ -1,0 +1,18 @@
+We arbitrarily root the tree at node 1 and add a root node connecting to node 1.
+Then all we need to store are the number of black children (yikes) for every node.
+
+This is because we can notice that any chain must have two endpoints 
+(so the # of black children vertices for these is 0, although one of them could be 1)
+We will split this into two cases:
+ - The first is if in the rooted tree, the chain extends from some node in a line down its subtree.
+ - The second is if in the rooted tree, the chain wraps around some node in two lines down its subtree.
+
+Case 1: 
+Storing the # of nodes with 0 children as zero, and same for one, two, and other (>= 2), the following must hold.
+zero = 1, two = 0, other = 0
+
+Case 2:
+Following similar logic, the following must hold.
+zero = 2, other = 0, two = 1, the parent of the two node is white. This ensures that the chain wraps around the two node.
+I think it would also be possible to use binary jumping to find the LCA of the two endpoints and calculate the length of the hypothetical chain.
+Then you would just check zero = 2, two = 1, one = length-3, other = 0.
