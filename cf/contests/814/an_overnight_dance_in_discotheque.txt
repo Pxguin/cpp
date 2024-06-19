@@ -1,0 +1,6 @@
+Due to circles being either contained or disjoint, we can express the graph as a forest.
+Then, we can separately solve each tree.
+
+If we note that the answer is computed as the sum of all even nodes minus the sum of all odd nodes,
+then this leads us to a dp solution, where dp[i][a][b] represents if we are at the ith node, the parity of components 1 and 2 (before & after midnight).
+We will build it from the bottom-up. In my solution I compact a and b to a single variable x, ranging from 1-4.
