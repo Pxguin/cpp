@@ -1,0 +1,25 @@
+D - Masked Popcount
+
+Clearly it is too costly to iterate over N, so we can optimize by iterating over all N bits of M.
+If the ith bit is 0, then it will contribute 0 to the answer.
+Otherwise, by some logic we can figure out that bit i is turned on in half of all numbers a multiple of 2^i.
+ - We can use this to figure out how many numbers <= M have bit i turned on.
+
+
+E - Max/Min
+
+First we sort the array so that for every number we know that it the minimum for all numbers ahead of it in the array.
+So we will iterate over every number, then compute the answer for this number with alll numbers ahead of it in the array.
+
+Note that all numbers of the array must be <= 10^6.
+For any number x it has 1e6/x multiples.
+For the sake of example I will assume there are only 3 multiples.
+ - The amount of numbers >= 3x is A.
+ - The amount >= 2x but < 3x is B.
+ - The amount >= x but < 2x is C.
+ - Then the answer for number x is 3A + 2B + 1C.
+We can precompute the answer for all numbers x (harmonic series).
+When iterating over the array; if there are duplicate elements then subtract one from the precomputed answer for this number.
+This takes MlogM time (if M is 1e6); in my solution I use lower bound so it takes MlogMlogN.
+
+(Easier) Side problem: Instead of computing the sum of the floored divisions, compute the floor of the summed divisions.

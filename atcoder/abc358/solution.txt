@@ -1,0 +1,9 @@
+F - Tree Degree Optimization
+
+If you consider that the sum of degrees adds up to 2N-2, then you can figure out that any sequence of degrees such that d>0 (for all d) && sum=2n-2 is valid.
+ - If you have N-1 edges then a tree is always possible, as long as multiple edges do not exist between any pair of nodes. The first condition (d>0 for all d) ensures this.
+
+After this the problem is very easy to solve:
+ - A node of degree one has 1A cost, a node of degree two has 4A cost, so on.
+ - So we can express this as adding 1*A, then cumulatively adding 3*A, 5*A, so on to achieve the d^2 value.
+ - Store these sums in a priority queue.
