@@ -1,0 +1,4 @@
+F - 3SUM
+
+Digits only end 0-9, so brute force over all three length combinations of them.
+If these add up to a number ending in 3 then it is a candidate; now check if 3 distinct indices exist with those digit endings.

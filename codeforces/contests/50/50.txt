@@ -1,0 +1,4 @@
+C - Happy Farm 5
+
+Compute the points on the convex hull of the farm, then calculate the min amount of moves between each consecutive pair of points.
+This is just max of the x distance and y distance between the points.

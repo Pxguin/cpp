@@ -1,0 +1,13 @@
+B - Two Sets
+
+If A = B then just set B to infinity (or some arbitrary unreachable value) to simplify things.
+We can draw two graphs where two nodes are connected in the first if their sum is A, and in the second if their sum if B.
+Then we want to start at a node only present in graph A or B; this is the only set it can be in.
+Relax this node in both graphs, and remove all connections to it. Then find another node only present in one graph, and continue.
+If at any point no nodes exist but you haven't gone through all nodes, then it fails.
+
+Alternate solution: 
+Use DSU to connect two nodes with weight A or weight B depending on if they add to A or B.
+Then we can prove that if all the nodes in a connected component can belong to set A and/or B, then there is a valid assignment.
+Otherwise, no assignment exists.
+ - Proof: if all nodes are connected by weight A except for a single node, then it is impossible to satisfy that node because its complement cannot be in both sets A and B simultaneously.

@@ -1,0 +1,21 @@
+C - Dreaming of Freedom
+
+It can continue forever if M reaches some number divisible by N.
+??????
+
+
+D - Running Miles
+
+We can prove that for any boundary, two of the three biggest numbers are at l and r.
+Let us rewrite b1+b2+b3-(r-l) as b2+(b1+l)+(b3-r). Then iterate over all b2 and use prefix and suffix sums to find the max (b1+l) and (b3-r).
+
+Alternative DP solution:
+Define dp[i][j] as max having picked j sights in the first i.
+By default, dp[0][0] = 0.
+If j is 0 or 2 then dp[i+1][j] = dp[i][j]. If j is 1 then dp[i][j]-1 because we are moving one to the right.
+Then if j = 0, you can set the left boundary as i.
+ - dp[i+1][j+1] = max(dp[i+1][j+1],b[i]-1);
+If j is 1 set the middle boundary.
+ - dp[i+1][j+1] = max(dp[i+1][j+1],dp[i][j]+b[i]-1);
+Same logic for j = 2.
+This can be combined into dp[i+1][j+1] = max(dp[i+1][j+1],dp[i][j]+b[i]-1);

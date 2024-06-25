@@ -1,0 +1,5 @@
+D - Secret Santa
+
+If someone wants to give a gift to person i then let them give it to person i (unless person i is already taken).
+It is always optimal because you just want to maximize the amount of people whose wishes are fulfilled.
+Then we just arbitrarily assign the remaining people and remaining wishes. If a person ends up assigning to himself then we fulfill his wish and reassign the conflicting edge to him.

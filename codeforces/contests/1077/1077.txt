@@ -1,0 +1,4 @@
+D - Cutting Out
+
+Binary search on the answer (x), and the answer works if you have t elements (not necessarily distinct) such that you can remove x copies of it from the array.
+The array can have duplicates too, so we have to consider that when checking X.
