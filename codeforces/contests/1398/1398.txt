@@ -1,0 +1,6 @@
+C - Good Subarrays
+
+Let us find the amount of good subarrays starting at each index l.
+For every l, we want to find the amount of indices r such that the sum of elements between r and l is equal to r-l+1.
+With prefix sums, ps[r+1]-ps[l] = r+1-l.
+So ps[r+1]-r+1 = ps[l]-l. Convert the ps array to store the sum of elements 1..r - r.

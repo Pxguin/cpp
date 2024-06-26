@@ -1,0 +1,10 @@
+D - Small Multiple
+
+Consider a graph of all integers, where the nodes are the integers and there is an edge between a and b if their digit sum is 1 apart.
+Then we want to find the shortest path from 1 to a multiple of K. 
+Digit sums being one apart is the same as multiplying by some power of 10, then adding 1.
+So we can instead treat the graph as having edges with weight 0 and 1.
+Weight 0 connects two nodes a and b such that b = 10a, and weight 1 connects two nodes a and b such that b = a+1.
+
+There are infinite nodes, but if we reduce each node to their remainder mod K then we only have K nodes now.
+Then we want to find the shortest path from node 1 to node 0 (K%K=0).

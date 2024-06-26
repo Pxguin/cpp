@@ -1,0 +1,6 @@
+D - Round Subset
+
+Decompose each number into a product of 5's and 2's (ignore the other numbers).
+Then the roundness of a subset is the min of the sum of 5's and 2's.
+Following this, we can use knapsack dp to calculate the answer; dp[i][j] represents from the first i numbers the max amount of 2's given j 5's.
+There are N transition states for each i, so the complexity is O(N^3).
