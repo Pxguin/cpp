@@ -1,0 +1,11 @@
+C - Tenzing and Balls
+
+Note that the answer is made up solely of disjoint intervals.
+Define dp[i] to be the answer for balls 1...i, and last[i] as a boolean value storing whether dp[i] contained an interval ending at i.
+In my code I store last[i] as an integer array but this is unneccesary.
+dp[0] = 0.
+
+Then we have some options for all i (uses push dp).
+ - Make a new interval,
+ - Extend an interval currently ending at i,
+ - Do nothing.
