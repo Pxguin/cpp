@@ -1,0 +1,11 @@
+E - Jeopardized Projects
+
+Use prefix sums to quickly calculate all queries.
+Using stars and bars, the amount of ways to add up k numbers (>= 1) to a sum numbers is (n-1 choose k-1).
+We want to find the sum of (n-1 choose k-1) for all k from 1 to n, which is simply 2^(n-1) by the binomial theorem.
+Alternatively, visualize Pascal's triangle. By the way the numbers transition to the next row, the sum of the binomial coefficients in the nth row is 2^(n-1).
+
+Now we have to find the amount of palindromes; for each array we can simply append a reversed copy of the array onto itself to create a palindrome of even length.
+So if there are x arrays summing to n, then we must subtract x from the number of arrays summing to 2n.
+For odd length palindromes, simply add a number between the two copies of the array. It can be anything, so we subtract x from arrays 2n...MAX_N.
+We can do these operations quickly using prefix sums again.
