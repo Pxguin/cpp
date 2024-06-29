@@ -1,0 +1,10 @@
+1 - Moocast
+
+Binary search on X and do dfs to check if all the cows are in the same connected component (or binary search + DSU).
+It takes N^2*log(max X) time both ways.
+
+
+3 - Lasers and Mirrors
+
+We can treat the x and y axes as vertices, so for every mirror it connects an edge between the vertices of its x and y axes.
+Then we can run bfs from the x and y of the start mirror to get to the x or y of the end mirror.

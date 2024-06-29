@@ -1,0 +1,4 @@
+2 - Milking Order
+
+Binary search on X. Then you have X constraints on order, which you can satisfy by building a graph and running topological sort.
+Find the lexicographically minimum with Kahn's algorithm.

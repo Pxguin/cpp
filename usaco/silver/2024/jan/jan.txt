@@ -1,0 +1,14 @@
+1 - Cowmpetency
+
+No
+
+
+2 - Potion Farming
+
+Some base observations: The amoun
+
+
+3 - Cowlendar
+
+If a number x divides a and b, then it divides a-b.
+The most important observation is that because a number can have no more than 3 mod values.
