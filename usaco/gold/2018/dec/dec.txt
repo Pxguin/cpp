@@ -1,3 +1,5 @@
+1 - Fine Dining
+
 It makes sense we want to use Dijkstra to initially find the shortest paths from all nodes to node N.
 
 Then, a solution would be to consider for all nodes i if there is an optimal path with a haybale in it.
@@ -11,3 +13,9 @@ we can run a multisource Dijkstra with distances initialized to dist(j,n)-yummin
 and thus calculate the minimum dist(j,n)-yumminess[j]+dist(i,j) for all i.
 
 It remains to simply compare this distance to dist(i,n) to get our answer.
+
+
+3 - Teamwork
+
+Do knapsack dp for a runtime of O(NK).
+Basically dp[i] stores the maximum for the cows 1...i (assuming all of them are in teams), then try to build teams size 1...k for each i. 
