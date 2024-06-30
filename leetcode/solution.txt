@@ -1,0 +1,13 @@
+41 - First Missing Positive
+
+The solution is in the range [1, n+1].
+An easy solution is create another array and just mark which numbers are visited;
+A harder solution to save memory (but more runtime) is to do this process in the current array.
+
+
+1143 - Longest Common Subsequence
+
+Define dp[i][j] as the length of the LCS if you are at position i in the first string and position j in the second.
+Then dp[i+1][j] = max(dp[i+1][j], dp[i][j]),
+    dp[i][j+1] = max(dp[i][j+1], dp[i][j]),
+and dp[i+1][j+1] = max(dp[i+1][j+1], dp[i][j]+(string1[i]==string2[j])).

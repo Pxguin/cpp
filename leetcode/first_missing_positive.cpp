@@ -20,7 +20,3 @@ public:
         return n+1;
     }
 };
-
-// the solution is in the range [1, n+1]
-// easy solution is create another array and just mark which numbers are visited
-// hard solution to save memory (but more runtime) is to do this process in the current array

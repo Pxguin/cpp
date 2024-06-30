@@ -1,0 +1,23 @@
+3 - Strongest Friendship Group
+
+For simplicity, assume the graph is a single connected component. 
+Then we should constantly remove the minimum degree vertex and recalculate the answer for each removal.
+
+Assume the minimum degree vertex for some component is T, and the size of the component is S.
+If you remove a vertex with degree > T, then the minimum for the resulting components is either T or T-1.
+The new sizes are also <= S, so this will always be worse than the current answer.
+
+So removing any vertex with degree = T will work. However, recalculating the size of each component during removals is quite slow.
+To solve this, we can simulate all removals, then reverse them so that we process additions to the graph, which can be done quickly with DSU.
+
+Solution 2 (covered in official editorial):
+I thought this solution was nice and much simpler. It also followed one of my initial (failed) thought processes before the above solution.
+
+We can fix one of two variables, either the minimum friends or the size of the component.
+If we fix the minimum friends, we need to find the maximum component size in the resulting graph.
+If we fix the component size, we need to find the minimum friends over all components of that size.
+Clearly, we want to iterate over all possible values of the first variable.
+
+By constantly removing vertices with degree < T (the min friends) and then calculating the largest component it takes M^2.
+We can iterate over T in ascending order and preserve vertice removals between values of T; thus the graph will be empty by sqrt(M).
+So the runtime is Msqrt(M).

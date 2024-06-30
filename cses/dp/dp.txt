@@ -1,0 +1,4 @@
+? - Grid Paths
+
+dp[i][j] = # of paths to row i, column j.
+dp[i+1][j] += dp[i][j], dp[i][j+1] += dp[i][j]. The answer is dp[n-1][n-1] (0 indexed).
