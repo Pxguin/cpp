@@ -1,0 +1,14 @@
+D - Smithing Skill
+
+Funny how I didn't pay attention to the constraints and spent an extra half hour of pointless thinking after I actually got the solution, lmao.
+(a[i] <= 1e6, assumed it was <= 1e9 because didn't read)
+
+Start off with an O(NM) solution.
+If we calculate the difference betwen a and b for each craft, denoted D, then it is obvious that you want to use the minimum D value possible.
+More specifically, you have C ingots, and for all crafts that you can do (C <= A[i]) find the minimum D. 
+Then you want to use this until you have less than the A[i] ingots, meaning you can't use that recipe anymore.
+Then you will find the new minimum D from the pool of available crafts, and repeat the process over and over.
+
+Because it is guaranteed that a[i] <= 1e6 in the constraints, we can precalculate the answers for all C[i] under 1e6.
+If C[i] is > 1e6 then it is greater than all a[i], thus we have access to all the crafts and can use the minimum D until it reaches <= 1e6.
+We precalculate with dp; dp[i] = dp[i-D]+1 (this is not considering the side cases)
