@@ -1,0 +1,19 @@
+https://csacademy.com/contest/fii-code-2020-final-round-mirror/tasks/
+
+4 - Mountain Time
+
+Quite a simple DSU problem in terms of formulation, in that we iterate over squares in descending value.
+For each square we want to connect the (at most four) components adjacent to it.
+For simplicity I will assume that it connects two components.
+
+For two components A and B, you should have answers for all the squares (except the maximums) in each component.
+Thus, when connecting A and B with square X, if A and B are equal then neither of the maximum squares can be relaxed.
+We will store a vector for each component containing the squares tied for the maximum value, and in this case will combine them together.
+
+If the maximum in A < max in B, then you can compute the answers for A, which clearly will be the value of square X.
+Same goes for max in B < max in A.
+
+
+We have to choose either to combine the component sizes small to large or the vectors containing the maximum values small to large.
+I choose the second; either way I'm not sure why it doesn't time out, but I'm assuming it's because of the inherent grid structure (which would obviously put bounds on the height of the trees).
+(Anyways I found a lot of difficulty implementing this)
