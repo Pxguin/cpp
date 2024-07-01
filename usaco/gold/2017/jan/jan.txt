@@ -1,0 +1,4 @@
+1 - Balanced Photo
+
+Coordinate compress, then maintain two BITs to compute for every cow the amount of taller cows on the left and right sides, respectively.
+(do this with complementary counting: # of current cows - # of shorter/same height cows = # of taller cows)

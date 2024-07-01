@@ -1,3 +1,11 @@
+?? - Company Queries I
+
+Precompute for every node the ancestors 2^n levels above it for all possible n.
+Then use the binary representation of each K (in each query) to find the kth ancestor of a node.
+
+
+?? - Tree Distances I
+
 We will root the tree arbitrarily.
 Then, for every node, we define two values F and G.
 f(x) is the maximum distance from node x to a node inside the subtree of x. 
