@@ -1,0 +1,13 @@
+K - Inheritance
+
+Maintain a DSU for every child, which runs under the given constraints.
+Then, we could run it in O(MK) by separately building an MST for each child. What we need is an efficient way to build all MSTs simultaneously.
+
+What we could do is binary search to find for each edge the minimum child that it can be taken by.
+Clearly though, we must prove that if an edge (A,B) works for some index i, then it must work for index i+1.
+This is simple by induction: if there is no path from A to B in index i's DSU, then there also must be no path in index i+1.
+
+However, a proof is as follows:
+Assume index i does not have a path from A to B but index i+1 does.
+But all the edges on the path from A to B should have belonged to the graph in index i, unless they would have formed a cycle in the graph.
+But if they formed a cycle, then there is still a path between those nodes; thus there should be a path from A to B. So either way this leads to a contradiction.
