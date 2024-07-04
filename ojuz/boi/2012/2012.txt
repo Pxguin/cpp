@@ -20,3 +20,24 @@ Here is some not working code (because I first assumed X1 is always non-decreasi
 if (x1 > d) {return (d>=prev);}
 else if (x1 >= prev) {return true;}
 prev = max(prev, x2);
+
+Alternative Solution (Mentioned in the usaco guide analysis).
+Consider two points A and B, and draw the line segment from A to B (A,B). We can draw the perpendicular bisector of (A,B) and connect it to the x-axis.
+The point where the bisector intersects the x-axis is equidistant to A and B. All points to the left of the perpendicular bisector are closer to A; everything to the right is closer to B. 
+ - (Proof): Draw two points A and B (A is to the left of B), and draw the line segment AB and perpendicular bisector.
+ - Label the point where it intersects the x axis D, and the point where it intersects segment AB as D.
+ - Draw line segments AD and BD. Then triangles CDA and CDB are congruent, thus DA and DB are also congruent.
+ - So the point is equidistant from A and B.
+
+ - Let's draw a point on the x-axis to the left of C, labeled E. We will prove it is closer to A than to B.
+ - ED is congruent to itself by the reflexive property, and DA and DB are congruent (proved earlier). 
+ - Now we have two triangles, EDA and EDB. The distance to A, EA, is less than the distance to B, EB, if angle EDA is greater than angle EDB.
+ - Clearly, if two sides of a triangle are congruent then the greater the included angle the larger the third side.
+ - You can also use law of cosines: a^2 + b^2 - 2abcosC = c^2. In this case a and b are fixed, and across all points E the angles C are fixed.
+ - The less the angle, the larger the result as cosine decreases from [0,180] thus the third side is longer.
+
+ - Back to the proof: angle EDA is greater than angle EDB because line segments AD and BD share a common point on the x-axis and A is to the left of B; thus angle EDB contains angle EDA, so it is greater.
+
+Consider three points A, B, and C (Ax<Bx<Cx), and draw the perpendicular bisectors of the line segments (A,B) and (B,C).
+If the line segments intersect, then all points from Ax to Cx are closer to A and C than B, so B is irrelevant.
+Thus we can store all the points in a stack.
