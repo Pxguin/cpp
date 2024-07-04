@@ -1,0 +1,15 @@
+1 - Modern Art 
+https://usaco.org/index.php?page=viewproblem2&cpid=742
+https://usaco.org/current/data/sol_art_gold_open17.zip
+https://usaco.org/current/data/sol_art_gold_open17.html
+
+
+3 - Modern Art 2
+
+We must be able to store the 1d painting in a stack; otherwise it does not work.
+ - (push the color into the stack at the first occurence, pop it at the last occurence).
+ - If when we try to pop it the element isn't the top of the stack, it fails.
+Some other observations:
+ - The case 12121 should produce -1, so we need to make sure that if we push an element into the stack it doesn't show up again at a point where the stack has a larger size.
+ - If there is a 0 then the stack must be empty.
+The answer is simply the maximum size of the stack at any point.

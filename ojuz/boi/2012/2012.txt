@@ -1,0 +1,22 @@
+?? - Mobile
+
+We can binary search on the answer, R. Then, we can draw a circle with radius R around every station.
+Now, because we only consider points on the highway segment, we can calculate the endpoints of the part of the x-axis intersecting the circle.
+This is equivalent to finding the length of a chord, which can be done with the pythagorean theorem.
+We will denote these endpoints as X1 and X2.
+Then, R works if there exists some point on the highway not contained in any segment (X1,X2) - it is fine if it is on the endpoints of a segment.
+
+Note that the x-coordinates are given in sorted order, so for strictly increasing x coordinates, the coordinate X1 will strictly increase.
+This means that we can store the largest X2 coordinate so far, and update it if some X1 < our X2 (meaning the two segments intersect). Then, the answer is if L >= the maximum X2.
+
+However, for some pair of coordinates (a,b),(c,d) such that a = c and b,d < 0, the points are given as (a,b),then (c,d).
+But the X1 coordinate for (c,d) is less than the X1 coordinate for (a,b). In these cases though, although the X1 point is less, the X2 point is greater.
+So the segment for (c,d) contains the segment for (a,b), and thus it is simply fine to compare them in the order given.
+
+Also, make sure to use doubles, as if you use long doubles then the extra computation for the square roots will time out.
+
+Here is some not working code (because I first assumed X1 is always non-decreasing):
+
+if (x1 > d) {return (d>=prev);}
+else if (x1 >= prev) {return true;}
+prev = max(prev, x2);
