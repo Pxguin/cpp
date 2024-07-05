@@ -1,0 +1,15 @@
+? - Advertisement
+
+For every height, find the largest width of the advertisement assuming this is the minimum height in the ad (then take the maximum).
+ - This implies finding the nearest smallest values on the right and left side of each value, which can be done with a stack.
+The max width of the ad for this height will be right-left+1.
+
+? - Maximum Building I
+
+This builds on the Advertisement problem. We can fix the bottom row and then calculate the maximum area like this similarly to the aforementioned problem.
+
+? - Multiplication Table
+
+Binary search on the median. To check, we make sure our value X is >= half of the values in the table.
+Do to this, iterate over every row of the table and count the number of values that X is greater than or equal to with some basic math.
+(If we are on row i, then X is greater than min(X/i, n) values)
