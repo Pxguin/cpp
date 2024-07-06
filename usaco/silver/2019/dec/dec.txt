@@ -1,0 +1,29 @@
+2 - Meetings
+
+Note than when two cows collide, although it is stated that they switch speeds, we can rephrase this as the weights of the two cows swap.
+Now let's break down the problem into two components:
+ - 1: Find time T
+ - 2: Find the # of meetings in the range [0,T]
+
+Find time T:
+To do this we want to store for every cow when it reaches a barn and the weight it has when reaching a barn.
+The first part is trivial because we don't calculate changing speeds anymore (but instead weights); which makes the second part is a bit more complex now.
+
+We can find the final weights for all negative speed cows and positive speed cows simultaneously. I describe finding the negative speed answers.
+Obviously we want to sort the negative and positive speed cows, then start from the negative speed cow with the lowest X, and iterate in ascending order.
+Clearly, this will mean the first cow has the least collisions and then all future cows have more and more collisions with positive speed cows.
+
+Now, the hardest part: we can observe that when a cow collides, it shifts all the weights of the cows it collides by one spot.
+So we can store a sorted array by x of both negative and positive cows.
+Then the ith negative cow will end up with a[i-1]'s weight.
+ - The sorting guarantees that the ith negative cow has a greater x value than anything before it.
+ - So this means there have been i-1 shifts so far, meaning we can take a[i-1]'s value.
+
+Now we do the same for all positive weights, and can simulate to find time T.
+
+
+Find the # of meetings in the range [0,T]:
+This part is much easier than the first. 
+We can for all positive speed cows X find all negative cows with x value in the range [X.weight,X.weight+2T] which can be done with binary search.
+ - This is because each cow can only move T units away. So a negative and positive cow will move a total of 2T units.
+Note that we don't have to do the same for negative speed cows because that would double count all meetings.
