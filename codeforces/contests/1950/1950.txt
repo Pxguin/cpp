@@ -1,0 +1,6 @@
+G - Shuffling Songs
+
+Define dp[mask][i] as the min amount of songs removed for subset mask and last song i.
+Then when adding a song to a subset, you can either add it to the end (if possible) or not add it to the end.
+If you don't add it to the end then the last song stays the same, and you add one to the removed songs.
+Otherwise the last song becomes the new song and you don't add anything to the removed songs.

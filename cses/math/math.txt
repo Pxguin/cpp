@@ -1,0 +1,13 @@
+?? - Exponentiation
+
+Use binary exponentiation to find the answer. Store the current result as 1.
+Namely, given the integer A and a power X, if X is even square the current result and divide X by 2; else multiply by A and subtract 1 from X to make it even.
+
+
+?? - Exponentiation II
+No clue how this works
+
+
+?? - Prime Multiples
+For every prime, compute all its multiples <= N and store these in a set.
+The answer is the size of the union of all the sets, which can be computed with the Inclusion Exclusion Principle.
