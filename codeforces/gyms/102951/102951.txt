@@ -1,0 +1,3 @@
+D - Static Range Queries
+
+Coordinate Compression (first get all numbers to calculate offline) + Prefix sums
