@@ -1,0 +1,9 @@
+? - Phidias
+
+Define dp[i][j] to be the minimum space wasted for a slab with width i and height j.
+By default, dp[i][j] = i*j. The base cases are for the N plates of size i,j, in which dp[i][j] will equal 0.
+
+Then for every plate we can combine it with another plate to form a new, larger rectangle.
+This means adding on all slabs with the same width as it (but possibly different heights), and separately, all slabs with the same height as it (but possibly different widths).
+Although this takes O(H^2*W^2), we can speed this up to O(HW(H+W)),
+by instead adding all slabs with the same width as it and smaller heights, and separately, all slabs with the same height as it but smaller widths. 
