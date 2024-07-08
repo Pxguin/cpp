@@ -1,0 +1,12 @@
+2 - Cow at Large
+
+First, we root the tree at K. If K is an exit barn then the answer is clearly 1.
+Otherwise, observe the following:
+ - For a given node i, if some farmer can reach the node before Bessie, then the farmer 'controls' node i's subtree.
+ - In other words, Bessie will not be able to reach any barn in the subtree of node i.
+ - Therefore, we should compute for every node the minimum distance for a farmer to reach it (i.e. dist to a leaf), and for Bessie to reach it (i.e. dist to K).
+ - These both can be done with BFS or DFS.
+ - After this we just do another DFS from node K, 
+   and if a farmer can reach a node before Bessie then we add one to the answer and move on (because all nodes in the subtree are controlled); otherwise we DFS into its subtree.
+ - This would also imply that when computing min dist to a leaf we only have to consider leaves inside the subtree of each node i,
+   because if a leaf outside the subtree is closer to node i then it should rather control the parent of node i.

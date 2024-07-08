@@ -1,3 +1,5 @@
+https://dmoj.ca/problem/ioi04p4
+
 ? - Phidias
 
 Define dp[i][j] to be the minimum space wasted for a slab with width i and height j.

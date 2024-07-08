@@ -1,3 +1,5 @@
+https://oj.uz/problem/view/CEOI11_bal
+
 ? - Balloons
 
 Given two balloons x and y with x to the left of y, if we know the radius of x we can find the radius of y with math.

@@ -1,3 +1,5 @@
+https://oj.uz/problem/view/BOI12_mobile
+
 ?? - Mobile
 
 We can binary search on the answer, R. Then, we can draw a circle with radius R around every station.
@@ -25,11 +27,11 @@ Alternative Solution (Mentioned in the usaco guide analysis).
 Consider two points A and B, and draw the line segment from A to B (A,B). We can draw the perpendicular bisector of (A,B) and connect it to the x-axis.
 The point where the bisector intersects the x-axis is equidistant to A and B. All points to the left of the perpendicular bisector are closer to A; everything to the right is closer to B. 
  - (Proof): Draw two points A and B (A is to the left of B), and draw the line segment AB and perpendicular bisector.
- - Label the point where it intersects the x axis D, and the point where it intersects segment AB as D.
+ - Label the point where it intersects the x axis D, and the point where it intersects segment AB as C.
  - Draw line segments AD and BD. Then triangles CDA and CDB are congruent, thus DA and DB are also congruent.
  - So the point is equidistant from A and B.
 
- - Let's draw a point on the x-axis to the left of C, labeled E. We will prove it is closer to A than to B.
+ - Let's draw a point on the x-axis to the left of D, labeled E. We will prove it is closer to A than to B.
  - ED is congruent to itself by the reflexive property, and DA and DB are congruent (proved earlier). 
  - Now we have two triangles, EDA and EDB. The distance to A, EA, is less than the distance to B, EB, if angle EDA is greater than angle EDB.
  - Clearly, if two sides of a triangle are congruent then the greater the included angle the larger the third side.
