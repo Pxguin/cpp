@@ -1,0 +1,11 @@
+F - MEX vs MED
+
+Let's try iterating over all mex, and for each one finding all subsequences with mex > med.
+We can find the min length subsequence (denoted S) with mex i for all i with basic two pointers - just find the min length sequence containing 1..i-1, which can be done recursively.
+Obviously, if i is in the sequence containing 1...i-1 then we skip the sequence, because i cannot possibly be a mex.
+
+Now note that for all subsequences containing S but not the mex i, mex > med if and only if the length of the subsequence is <= 2(i-1).
+In this case the median will be one of 1...i-1 and thus be less than the mex i.
+
+The solution presented on usaco guide (https://usaco.guide/problems/cf-mex-vs-med/solution) does this more elegantly with iteration to the index of the next med, thus keeping the runtime O(N),
+but I chose to use some permutation math (kind of) to find the answer.

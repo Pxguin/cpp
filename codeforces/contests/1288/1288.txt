@@ -1,0 +1,13 @@
+D - Minimax Problem
+
+We can, for every element NM, assume it is the minimum. 
+At first it may not be easy to see we can binary search, but with the above observation it can reduce the search complexity down from NM to log(1e9).
+
+Basically, now we need to find two arrays such that the minmax for them is >= X.
+We can do this by representing each array with a bitmask: 0 if an element is < X, and 1 an element is >= X.
+Now, the problem is simplified to finding two arrays whose bitwise OR is (2^m)-1 (all ones).
+
+For a given bit 1111000, any other bitmask with three 1s in the last spots works (no matter the first four digits).
+So for every bitmask we can take all its subsets of 1s and mark these as valid in an array (which runs in time if we do this for all arrays at once - note there are only 2^m possibilities).
+Then for all bitmasks if its bitwise not is marked as valid, then there is a working pair for X.
+The time complexity is O(log 1e9 * (M(2^m)+NM)).

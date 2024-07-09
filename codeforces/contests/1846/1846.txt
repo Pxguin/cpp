@@ -1,0 +1,12 @@
+F - Rudolph and Mimic
+
+We're forced to do nothing until the mimic transforms. This would be indicated by a different set of objects compared to the previous round.
+Once it transforms, then we can be confident which object type the mimic is (the count of that type should have increased).
+Thus we get rid of all other objects. After this, we stall for another two rounds until the mimic transforms again, and now we can identify it.
+
+
+G - Rudolph and CodeVid-23
+
+The problem statement is a bit ambiguous in that it doesn't specify if some medicine can be used more than once, but yes it can.
+Now the constraint on n is <= 10, so we can iterate over all 2^10 bit strings and for each one try every medicine.
+Then we have a graph, so we just need to find the shortest path from Rudolph's initial string to the node with value 0 (with dijkstra).
