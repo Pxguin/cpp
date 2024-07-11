@@ -1,0 +1,16 @@
+E - Wonderful Tree!
+
+If a vertex is <= the sum of its children vertices, then it is ok.
+Otherwise we must update its child vertices' values. 
+ - We can increase each of them until they are equal to the sum of their children vertices, each increase costing 1 operation.
+ - If this is not enough, we increase the children of the children until they are equal to their child vertices,
+   and then for every increase we increase the children of the current node by 1. Each of these increases costs 2 operations.
+The pattern becomes clear very quickly, and we can build a greedy solution from this.
+
+We will do a dfs and calculate bottom-up. For each vertex, we store an array of length N. Index i denotes the amount of available operations costing i (note this can be infinity).
+Then if the current value of the vertex is <= than the sum of the children, we have sum-cur_value operations costing 0 to increase the sum of the children.
+Else we will greedily take the values costing the least operations until our current value is equal to the sum.
+
+After this we move these values to the parent. All nodes in this subtree are now 1 node further from the parent, so operations costing X in the current node will cost X+1 in the parent.
+Thus we will shift all values in the array right by one. After this, we would simply add up all the values for the children (and add these to the parent node).
+The overall time complexity is O(N^2). The editorial mentions that an O(N) solution is possible, which I may try to come back to later.
