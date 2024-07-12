@@ -1,0 +1,22 @@
+(the contest was going on last night; I solved G right after the hacking phase. As the problem ratings are not decided right now I will estimate my own)
+
+A - Only Pluses (estimate: 800)
+
+We can try all possible values of A, B, and C, and then check if the sum of the differences is <= 5.
+If it is we compare it with the maximum so far and take the bigger number.
+
+
+G - Ultra-Meow (estimate: 2000)
+
+We should iterate over every length |b| from [0,N]. 
+Then let's observe that for a given length |b|, denoted L, the MEX of any subset of length L must be in the range [L+1,2L+1].
+You get the L+1 bound by picking L numbers > L+1 (note it may not always be possible), and the 2L+1 bound by picking the smallest L numbers (always possible).
+
+The constraints allow it, so for all L we will then iterate for all mex from [L+1,2L+1] in decreasing order.
+The answer for 2L+1 is simply min(2L,n) choose L (then multipled by 2L+1).
+
+Then to achieve a mex of 2L-1, we must have L-1 elements < 2L-1. To keep the length at L we must add an element > 2L-1.
+Obviously, if no elements in the array are > 2L-1 then we stop here.
+So L-1 elements < 2L-1, and 1 element > 2L-1. Find all ways to do these with binomial coefficients & then permutate them.
+ - (this will require precalculating all binomial coefficients)
+Same logic goes for 2L-2, 2L-3... L+1.
