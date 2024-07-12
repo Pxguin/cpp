@@ -1,0 +1,5 @@
+E - Set Add Query
+
+We can speed the basic O(NQ) solution up by noting that we add the size of the set to some element as long as the element stays in the set.
+So we store a prefix sum of the size of the set, and only when an element is removed do we update its sum (w/ prefix sums) based on how long it was in the set for.
+ - Formally, if an element entered at query A and exits at query B then we add ps[B-1]-ps[A-1] to the sum for this element.
