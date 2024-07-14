@@ -39,7 +39,7 @@ int main() {
 	}
 	for (int i=0;i<n;i++) {
 		for (int j : adj[i]) {
-			if (idx[j] > idx[i]) {flag = true;}
+			if (idx[j] >= idx[i]) {flag = true;}
 		}
 	}
 
