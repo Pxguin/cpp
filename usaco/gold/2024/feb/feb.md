@@ -1,0 +1,7 @@
+# USACO Gold 2024 February
+
+## 1. Bessla Motors
+
+This problem actually feels so depressed because the problem statement is so confusing and the solution is pretty unoriginal as well. Now I originally thought the problem allowed recharging at stations, so I crafted a solution using DSU and Dijkstra that would merge together separate paths, and then another, completely rewritten solution that did the same thing but explicitly stored the paths. Both obviously failed, because your understanding of the problem is supposedly to be "just see if there are K stations within distance R from each travel destination". Unfortunately the extra text about charging stations misconstrued the entire problem statement, at least for me. Yeah so after this the problem is just really boring, yet I still managed to waste a considerable amount of time on it; it's so simple that you just overthink it. You basically simulate an $O(CMlogN)$ brute-force algorithm and store the reachable charging stations from each node but skip over iterations when the node already has $K$ distinct reachable stations. So $O(KMlogN)$ with a total of $CMlogN$ iterations, okok.
+
+I'm not sure if the problem is solvable if you can recharge at stations, because there's no test data, but if anyone wants to challenge my solution in the bessla_motors_bad file then feel free.

@@ -1,7 +1,0 @@
-# USACO 2024 Gold US Open
-
-## 2. Grass Segments
-
-Ok so two segments either are disjoint, intersecting at one endpoint, or one contains the other. So this means that the answer for segment $i$ is the amount of segments starting to the left of $i$ and ending $>= l_i + k_i$, plus the # starting to the right and ending $<= r_i-k_i$, minus the segments containing $i$, plus the segments contained by $i$ with size $>= k_i$. Yeah also the last part is impossible to do efficiently. 
-
-With complementary counting, we get rid of double counting the segments containing $i$. Now, it's just $N - ($ the # of segments starting to the left of $i$ and ending $< l_i + k_i$, plus the # starting to the right and ending $> r_i-k_i$, plus the amount of segments contained by $i$ with size $< k_i)$. We see the problematic last part appear again, but just iterate over $k_i$ in descending order, and build an indexed set/order statistic tree (or binary indexed tree with coordinate compression) containing all segments with size $> k_i$. We basically limit ourselves to this monotonically growing set of ranges. Thus we ensure that any segment containing, or contained by $i$ will have size $>= k$ and we don't have to deal with them. Complexity: $O(NlogN)$
