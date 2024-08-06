@@ -1,4 +1,4 @@
-# USACO 2024 Gold US Open
+# USACO Gold 2024 US Open
 
 ## 2. Grass Segments
 
