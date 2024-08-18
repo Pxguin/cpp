@@ -16,6 +16,8 @@ int dx[4] = {0,0,1,-1};
 int dy[4] = {1,-1,0,0};
 
 int main() {
+	ios::sync_with_stdio(false); cin.tie(0);
+
 	int n, d; cin >> n >> d;
 	vector<vector<char>> a(n,vector<char>(n));
 	queue<T> rocks, ori, sq;
