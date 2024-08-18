@@ -1,0 +1,13 @@
+# USACO Gold 2020 December
+
+## 1. Replication
+
+Simplify the grid down to having only one $S$ position. Consider what happens in the first $D$ minutes, before the first replication. Any square within distance $D$ of the starting position will be reachable, which we can calculate with BFS. To extend the problem to having as many $S$ positions as possible, just do a multisource BFS. 
+
+In fact this goes for every block of $D$ minutes. If you are at position ($x$,$y$) and have replicated $K$ times already, then you will still do BFS from this position, considering the centers of each group. But there is the extra detail that you need to check if any rocks are in the current group of robots. To do this, let's see if the closest rock to the center of the group is within distance $K$: if it is then there is a rock inside the group. Find the closest rocks to all positions with a BFS in $O(N^2)$. 
+
+Also, note that we only care about the earliest time we get to any position. There is no benefit to backtracking to an already visited position to replicate there (it's a bit difficult to see imo, but think about it). Following this, we have our second BFS which runs in $O(N^2)$ as well.
+
+After this we have for every position the earliest time we get to it, which effectively tells us how large the group is at that position. We must find the union of all these groups; any square inside the union will contribute to the answer. To find the union we'll do a third BFS. For a given group that has gone through $K$ replications, we will mark the center as distance $K$, the four squares around it as distance $K-1$ (i.e. the robots that were added at the first replication), the ones around them as $K-2$, etc (denoted $R$). Then our BFS sources are the centers of each group and we want to find the maximum $R$ for every square. When we go to each node's neighbors their distance is $R-1$. When $R$ is $0$, then we'll obviously stop. At the end, any node with a non-infinite distance contributes to the answer. (to implement this efficiently I maintain a queue and a sorted vector, so $O(N^2+N^2log(N^2))$. Also there is the caveat where a group of robots may move at a time that's a multiple of $D$ without issue but after replication will collide with rocks.) 
+
+Anyways, the complexity is $O(N^2+N^2log(N^2))$ (although there's a noticeable coefficient on the $N^2$ with all the BFS and queue additions).
