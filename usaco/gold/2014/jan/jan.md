@@ -1,0 +1,5 @@
+# USACO Gold 2014 January
+
+## 3. Ski Course Rating
+
+Simulating in $O((MN)^2)$ requires a flood fill from every starting position, combined with binary search. In fact, this is pretty much just the silver version of the problem. To speed it up a bit notice the repetition involved in the flood fill. If we treat this as a weighted graph and simply add edges in increasing order of weight, then we only have to consider $4MN$ edges. Well what am I saying, basically just use DSU to store the number of starting points in each component. Merge components as necessary and if at any point the size of a component exceeds $T$ then just add to the answer. Also I originally missed this but $T=1$ is a special edge case that doesn't show up in the official test data (thanks usaco guide). It runs in $O(MNlogMN+MN\alpha{(MN)})$ where the log is from sorting edges by weight.
