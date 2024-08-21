@@ -12,11 +12,11 @@ By default, we should assume every cow has a distinct favorite color, and then r
 
 Initial solution: I split up the solution into two parts, uniting components by a less precise rule, then increasing the precision to unite a second time. It only worked if components were united in a specific order, so I gave up on it.
 
-Second solution: I combined into one uniting, and noted that if there is an edge with an $A$ value inside a component then all other edges with $A$ values inside the group can be united into it. It was implemented messily and with error but led to my final correct solution. It also failed on a side case.
+Second solution: I combined into one uniting, and noted that if there is an edge with an $A$ value inside a component then all other edges with $A$ values inside the group can be united into it. Well this is pretty much the solution, except I only intended for this to tackle a specific side case so it didn't work.
 
-Third (final solution): I realized that if we have the edges for each group then we can just unite all of them into one group, avoiding the issue with the side case in my previous solution. I ran into a really tricky segmentation fault side case that took me 1-2 hours to debug though (the side case led into a second even harder side case). If you're curious it's in lines 48-52. $adj[cur]$ can be equivalent to $adj[y]$ in the unite function leading to a pop_back being called when the vector is empty. I implemented this with error:
+Third (final solution): I ran into a really tricky segmentation fault side case that took me 1-2 hours to debug though (the side case led into a second even harder side case). If you're curious it's in lines 48-52. $adj[cur]$ can be equivalent to $adj[y]$ in the unite function leading to a pop_back being called when the vector is empty. I implemented this with error:
 
 unite(cand,adj[cur].back()); <br>
 if (adj[cur].size()>1) {adj[cur].pop_back();}
 
-The issue is that I may call pop_back during the unite function and then call it a second time after, which effectively skips elements. I solved it by not calling pop_back if the vector size changed in the unite function.
+The issue is that the vector size may change (but not become empty) during the unite function, so pop_back effectively skips elements. I solved it by not calling pop_back if the vector size changed in the unite function. Edit: found a more elegant fix.

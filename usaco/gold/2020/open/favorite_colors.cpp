@@ -22,7 +22,8 @@ int main() {
 	}
 
 	auto get = [&](auto& get, int x)->int {return (x==par[x]?x:par[x]=get(get,par[x]));};
-	auto unite = [&](int x, int y) {
+	auto unite = [&](int x, int y, int cur) {
+		adj[cur].pop_back();
 		x = get(get,x); y = get(get,y);
 		if (x != y) {
 			if (adj[x].size()<adj[y].size()) {swap(x,y);}
@@ -42,11 +43,7 @@ int main() {
 		q.push(cand);
 
 		// unite all children !
-		while (adj[cur].size()>1) {
-			int sz = adj[cur].size();
-			unite(cand,adj[cur].back());
-			if (adj[cur].size()>1 && adj[cur].size()==sz) {adj[cur].pop_back();}
-		}
+		while (adj[cur].size()>1) {unite(cand,adj[cur].back(),cur);}
 	}
 	vector<int> col(n,0);
 	int c = 0;
