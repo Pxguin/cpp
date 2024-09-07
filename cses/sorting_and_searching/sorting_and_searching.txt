@@ -1,4 +1,0 @@
-Subarray Sums II
-
-For every prefix sum A find the # of prefix sums to the right of this with value A+X, 
-which can be done by maintaining a map of all PS and their frequency, and then subtracting A before calculating its value (for all A).
