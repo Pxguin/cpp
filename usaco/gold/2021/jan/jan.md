@@ -13,4 +13,4 @@ Storing the inversions will always work, because given a subset $i$, if we appen
 
 ## 2. Telephone
 
-hold on
+ok so I solved it with Dijkstra, by default there are $N^2$ edges but this can be reduced if you just take the closest cow of each breed (both on left and right side) to every cow, so there are only $NK$ edges. Because you only traverse to the closest cow, say breed $i$, then you have to set $S_{ii}$ to true (breed $i$ communicates with breed $i$). This works because edge weights are distances between cows, so you can traverse from cow $1$ to $2$, and then from $2$ to $3$, and it is the same as going from $1$ to $3$. It takes $O(NKlogN)$, although the official editorial has a $0/1$ BFS solution running only in $O(NK)$ (you can transmit a message left or right, which is weight $1$, or have the current cow receive it, which is weight $0$).
