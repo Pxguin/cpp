@@ -14,3 +14,13 @@ Storing the inversions will always work, because given a subset $i$, if we appen
 ## 2. Telephone
 
 ok so I solved it with Dijkstra, by default there are $N^2$ edges but this can be reduced if you just take the closest cow of each breed (both on left and right side) to every cow, so there are only $NK$ edges. Because you only traverse to the closest cow, say breed $i$, then you have to set $S_{ii}$ to true (breed $i$ communicates with breed $i$). This works because edge weights are distances between cows, so you can traverse from cow $1$ to $2$, and then from $2$ to $3$, and it is the same as going from $1$ to $3$. It takes $O(NKlogN)$, although the official editorial has a $0/1$ BFS solution running only in $O(NK)$ (you can transmit a message left or right, which is weight $1$, or have the current cow receive it, which is weight $0$).
+
+## 3. Dance Mooves
+
+Following the silver version, build a directed edge from $a$ to $b$ if after $K$ swaps a cow at position $a$ goes to position $b$. While going to position $b$ it may go to intermediate positions so store these in a set/vector $S[i]$. We end up with a functional graph composed solely of cycles. 
+
+If $M$ is divisible by $K$ then we can figure out how many nodes we traverse from each node in the graph (simplified to the minimum of the cycle length and $M/K$). Then the answer for a cow is the size of the union of all $S[i]$ on the path it traverses (done using multiset or frequency array). By maintaining a sliding window we can efficiently find the answer for every cow in the cycle.
+
+If $M$ isn't divisible by $K$ then we'll simulate the first $M mod K$ steps then continue from there. Note that when taking the union of all $S[i]$ on the path of node $j$, we also have the consider the positions that $j$ goes to in the first $M mod K$ swaps. Similar to the silver version, this algorithm runs in $O(N+K)$.
+
+Note: if you wanna save memory there's places in my solution where you can reuse arrays (I did this in an early solution draft by having one array serve as the position, visited, and answer arrays) but for clarity they are separated.
