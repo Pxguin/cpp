@@ -1,0 +1,7 @@
+# USACO Gold 2020 February
+
+## 1. Timeline
+If a session $b$ happens after a session $a$ then draw an edge from $a$ to $b$ - this lets us topologically sort the graph. We want this because if some session $b$ occurs after $a$, then we want to know the answer for $a$ in order to compute $b$. Following this, let $dp[i]$ represent the earliest time that session $i$ can take place. Then for a given session $i$ take all edges $j$ pointing to it. $i$ must occur at least $x_j$ days after $a_j$ for all $j$, so $dp[i] = max(a_j+x_j,S_i)$. It runs in $O(N+C)$.
+
+## 2. Help Yourself
+Instead of explicitly going over every subset of segments just find out for each segment how much it contributes to the answer. To avoid overcounting segments we'll only count for the first segment in each component. A segment will only be the first segment if no segments intersect it from the left. So, sort the points left to right and for every segment keep track of the number of active segments (including the current segment; also denote this as $K$) - all these intersect this segment, so ignore them. Then just add the sum of ${N-K}\choose{i}$ for all $0\le i\le N-K$, which equates to $2^{N-K}$. After precalculating all powers of $2$ we get a runtime of $O(N)$.
