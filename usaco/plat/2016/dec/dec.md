@@ -1,0 +1,6 @@
+# USACO Platinum 2016 December
+
+## 2. Team Building
+Define $dp[i][j][k]$ as the number of ways to select the first $k$ cows from both farmers, provided that the last cow chosen from FJ was cow $i$ and the last cow from FP was cow $j$. Then, if cow $i$ scores higher than cow $j$, then $dp[i][j][k]$ equals the sum of all $dp[a][b][k-1]$ such that $a<i$ and $b<j$ (otherwise it is $0$). We have to speed this up from $O(N^2M^2K)$ to $O(NMK)$; $a<i$ is easy to fix by arranging the order of the for loops, so then just maintain prefix sums where $ps[j]$ denotes the sum of all $dp[a][b][k-1]$ such that $b<j$.
+
+The USACO Guide solution is easier; I feel dumb that I didn't think of it considering I've solved similar things before. Instead, define $dp[i][j][k]$ as the amount of ways to select the first $k$ cows, given that you've considered the first $i$ cows from FJ and the first $j$ cows from FP. To avoid double-counting, $dp[i][j][k] = dp[i-1][j][k]+dp[i][j-1][k]-dp[i-1][j-1][k]$. If cow $i$ scores higher than cow $j$, then also add $dp[i-1][j-1][k-1]$.
