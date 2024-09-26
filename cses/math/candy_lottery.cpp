@@ -11,5 +11,8 @@ int main() {
 	FOR(j,1,k+1) {
 		ans += (pow(j/k,n)-pow((j-1)/k,n))*j;
 	}
+	ans *= 1e6;
+    ans = round(ans);
+    ans /= 1e6;
 	cout << fixed << setprecision(6) << ans << '\n';
 }
