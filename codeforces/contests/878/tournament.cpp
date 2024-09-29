@@ -33,10 +33,12 @@ int main() {
 		SCC new_ = SCC(skill);
 		
 		auto it = s.upper_bound(new_), it2 = s.lower_bound(new_);
-        /*lower bound finds the earliest scc that beats the node (check how the cmp function works); 
-        upper bound finds the earliest SCC that dominates this one, so the iterator before it must be the last SCC that this node can beat*/
+        /*
+		upper_bound finds first such that cmp(val,element) returns true, i.e. first element that can beat val
+		lower bound finds first such that cmp(element,val) returns false, i.e. the element dominates val. So the element directly before this value will be the last scc this node beats
+		*/
 		
-		if (it!=s.end() && it2!=s.begin() && cmp1(*it,*prev(it2)) && cmp1(*prev(it2),new_)) {
+		if (it!=s.end() && it2!=s.begin() && cmp1(*it,*prev(it2)) && cmp1(*prev(it2),new_)) { // side cases, feel free to ignore these
 			while (it!=it2) {
 				merge(*it,new_);
 				it = s.erase(it);

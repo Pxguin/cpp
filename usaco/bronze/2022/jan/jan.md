@@ -1,0 +1,4 @@
+# USACO Bronze 2022 January
+
+## 1. Herdle
+Iterate through all letters in the guess and check to see if they appear in the answer. If they do, and they appear at the same location, then it should appear green. If this happens, we'll also remove this letter from the pool of letters in the answer and the guess to avoid double-counting it later. After this, do the same thing, but count the number of yellow tiles (a tile is yellow if it appears in the answer and guess, but they aren't in the same location). Note that green and yellow tiles must be counted separately because green has priority over yellow. All in all, it runs in $O(N^2)$ where $N$ is the length of the game board, or in my implementation $O(N^3)$.
