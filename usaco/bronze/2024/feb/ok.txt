@@ -1,1 +1,0 @@
-Precalculates all queries with scan line
