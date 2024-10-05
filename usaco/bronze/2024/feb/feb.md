@@ -1,5 +1,8 @@
 # USACO Bronze 2024 February
 
+## 1. Palindrome Game
+The number $10$ is a losing state, meaning whichever cow moves when the number of stones is $10$ will always lose. This is because $10$ is not a palindrome; in fact, no multiple of $10$ is ever a palindrome. This means that if the initial pile is a multiple of $10$, then Bessie loses because after her removal, Elsie can always get it back to a multiple of $10$. Otherwise, Bessie wins because she can get it to a multiple of $10$ on her first move. To check for this just check the last digit of the string. If that is a $0$ then the number is a multiple of $10$. Reading the string takes $O(|S|)$ but the check is $O(1)$.
+
 ## 2. Milk Exchange
 If a cow gives away milk, but doesn't receive milk, then we lose $1$ milk/minute until this cow's bucket is empty. Once this cow's bucket is empty, then the cow that it gives milk to won't receive milk from this cow anymore, so if no other cow passes to it, then we'll continue losing $1$ milk/minute until that cow's bucket is empty, and so on. 
 

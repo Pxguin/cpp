@@ -7,7 +7,6 @@ using namespace std;
 #define pii pair<ll,ll>
 #define f first
 #define s second
-#define FOR(i, a, b) for (int i = (a); i < (b); i++)
 #define F0R(i, a) for (int i = 0; i < (a); i++)
 #define lb lower_bound
 #define ub upper_bound

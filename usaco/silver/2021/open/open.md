@@ -1,0 +1,6 @@
+# USACO Silver 2021 US Open
+
+## 2. Do You Know Your ABCs?
+There's a boring solution that I came up with first, which involves systems of linear equations. Brute force over all possible values that the $a_i$ could be, then solve for $A$, $B$, and $C$ (with something like Gaussian elimination). These values work if $1\le{A}\le{B}\le{C}$. But it is tedious to do and I did not feel like coding matrices and Gaussian elimination in c++.
+
+An observation required for the first solution is that even if we're only given $4$ of the $7$ variables, we can still definitively derive $A$, $B$, and $C$. Specifically, $A$, $B$, and $C$ are either be already present as one of the variables, or can be expressed as the difference of two of the variables. This means we can calculate all of the differences, and brute force all possible values of $A$, $B$, and $C$. Then if all $a_i$ can be formed with these values of $A$, $B$, and $C$, then the triplet of numbers is valid. The runtime is $O(N^6)$ per test case for a total runtime of $O(TN^6)$.
