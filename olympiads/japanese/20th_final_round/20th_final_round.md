@@ -1,0 +1,12 @@
+# 20th JOI Final Round
+
+## 4. Robot
+For a given node, there are two conditions for a road to become distinct: either we recolor this road or we recolor all other roads that have the same color. I'll refer to these as the <i>self</i> and the <i>complement</i>. Because edges can be colored anything from $1$ to $M$, that means that all edges can be given a distinct color. So if we color the edge itself, we can ensure it remains distinct from all other edges. 
+
+The base of the algorithm will be Dijkstra, but we need to sort out some details to ensure that costs are calculated correctly. There are a couple cases ($S$ is self, $C$ is complement):<br>
+1) $S\rightarrow{C}$ (the robot just came from an edge that we colored distinctly, and we want to traverse the next edge by coloring its complement)
+2) $S\rightarrow{S}$ (we colored the last edge with a distinct color and want to do the same with this edge)
+3) $C\rightarrow{C}$
+4) $C\rightarrow{S}$
+
+If we store two distance values for each node, one for $S$, and one for $C$, then we can very easily perform these transitions. The only problematic case is $S\rightarrow{C}$ because if the next edge is the same color as the previous, then it double-counts the weight of the previous edge. We can deal with the case by separately storing $T_{i,j}$ (node $i$ and color $j$; transition values). $T_{i,j}$ = $min(S_k,C_k)$ where $k$ is adjacent to $i$ by an edge of color $j$ — the double-counted edge is subtracted out, so the problem is reduced to finding $S\rightarrow{C}$ when the edge colors are different. So, we can use $T\rightarrow{C}$ to take care of if the next edge is the same color as the previous, and $S\rightarrow{C}$ if they are different. It should be clear that checking if they're different is still time consuming, so we can instead just blindly push $S\rightarrow{C}$ at every node no matter the relationship of the edge colors, because we know that when the edge colors are the same, $T\rightarrow{C}$ will always produce a smaller cost than $S\rightarrow{C}$, and thus will always overwrite it. As a side note, this means that $S$ and $C$ push to the same values so we can just combine them into one. So treating $min(S,C)$ and $T$ as separate dp states for every node, we can achieve a runtime of $O((N+M)log(N+M))$.
