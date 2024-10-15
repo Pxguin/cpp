@@ -1,0 +1,6 @@
+# graph
+
+## Maximum Independent Set
+Use meet in the middle to brute-force which sets are valid candidates. Let's say that the first half of the data is $A$ and the second half is $B$. Then, for each valid set in $A$, we want to find some valid set in $B$ such that the union of the two sets still form an MIS, and that the popcount of the union is maximal. So, for each bitmask/set in $A$, find which nodes belonging to the second half of the set don't share any edges with any of the nodes in this mask. Mark the bits corresponding to these nodes as $1$ bits, and store it in some integer denoted $M$. Then the optimal pairing for this bitmask is the set in $B$ such that it is a subset of $M$ and that the popcount is maximal; these values can be calculated with simple dp (see 1995 D on cf, cases, for another example). This leads to an $O(2^{N/2}*N^2)$ runtime. 
+
+Alternative solution: build the complement of the graph (i.e. if there are edges in the original graph then they don't belong in the complement, and vice versa). Then the new goal is to find the maximum complete graph, or the maximum clique.

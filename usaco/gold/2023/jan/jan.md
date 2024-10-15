@@ -1,0 +1,10 @@
+# USACO Gold 2023 January
+
+## 2. Lights Off
+This problem is so difficult and I don't know how the solve rate by promoters was so high. The solution is quite elegant though. Truthfully, most of the problem relies on a fundamental property with xor that was very difficult for me to correctly apply.
+
+If we treat each switch configuration as a node and draw edges, then we want to find a minimum length path from our initial switch state such that the xor of all the nodes on the path is equal to the current light state; this means that all lights are turned off. There's not enough memory or time to precalculate all queries from all states, but it is possible to precalculate them from the one state where all switches and lights are initially turned off (the bitmasks are zero).
+
+Let $dp[i][mask]$ be a boolean that represents if, in exactly $i$ moves, we can get the lights to the state $mask$. It may seem nebulous as how to calculate it but for now we can simply assume that it's possible (I'll explain later). Then for each test case, we're given the light and switch states $L$ and $S$. An upper bound on the number of moves is $3N$, so fix the number of moves $i$. We can pretend that all the switches are initially turned off by taking advantage of the fact that xor is associative. In other words, take the xor of all bitmasks when simulating the process for $i$ moves without flipping the state of any switch (call this xor $X$). Then we check if $dp[i][L\oplus{X}]$ is true.
+
+How to calculate the dp: we will separate all the xors again. If we are on some $dp[i][mask]$, then for each move from $1\dots{i}$, we change the state of some bit. If we look at each bit change individually, the first bit basically turns on a subsequence of length $i$, the second a subsequence of length $i-1$, etc. The xor of all these subsequences is $mask$. So to calculate $dp[i][mask]$, we just try adding a subsequence of length $i$ (denote $X$) at any of the $N$ positions, then check if $dp[i-1][X\oplus{mask}]$ is true. All this will achieve an $O(N^2*2^N+TN)$ runtime.
