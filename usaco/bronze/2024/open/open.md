@@ -1,0 +1,8 @@
+# USACO Bronze 2024 US Open
+
+## 3. Farmer John's Favorite Permutation
+It's good to start with the $O(N^3)$ algorithm. Each operation can be treated as removing one of the endpoints of the array, and giving us the new endpoint. So, across all operations we will always, at minimum, get the values (in some order) of $a_2\dots{a_{n-1}}$. We don't definitively know the values of $a_1$ and $a_n$, so just try all possible values. For each one just simulate the process to fill in the remaining values, and if there is a contradiction with the current array then this configuration is impossible.
+
+I'll introduce some observations critical to the $O(N)$ algorithm. First, if all values in $h$ are distinct, then the last value given must be one of $a_1$ or $a_n$. By simple brute force we can test both values (or take advantage of a property I'll mention later). Second, if not all values are distinct, there must exist exactly $N-2$ distinct values in $h$, i.e. there exists one pair of the same value. We can say that no permutation works if this condition is not satisfied (note that the converse is not true). Following this, the two candidates for $a_1$ and $a_n$ must be the values not present in $h$. Finally, $a_1<a_n$ because the final array must be lexicographically minimum. If $a_1>a_n$ then it is possible to just reverse the array.
+
+So we now know $a_1$ and $a_n$, and can just simulate the process like in the $O(N^3)$ algorithm. If we find a contradiction with the current array then it is impossible, and otherwise the final array must be lexicographically minimum. It runs in $O(N)$ (but in my code, I have $O(NlogN)$ preprocessing).
