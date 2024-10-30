@@ -1,0 +1,8 @@
+# USACO Silver 2022 December
+
+## 3. Range Reconstruction
+I finally came back to this because there is a reason why, for so long, I only solved the first two from this contest but never the third one. It is still hard imo and is not my strength at all. 
+
+I will present an idea: assuming there does exists a solution for a given set of ranges, it can be said that the solution is unique (you can take the array and add the same number to every element, or negate the differences between adjacent elements; both will produce different arrays, but being transformations of the original array, we will consider them to be identical). An easy way to see this is that for any set of ranges for an array of length $3$, there exists only one solution. Any modification will mess up a prefix range. So, it can be said that an array with length $\ge{3}$ must have the same property, because any modification will at least mess up a subarray of length $3$. Obviously, for arrays of length $2$ and $1$, there is also only one solution. 
+
+This means that if we can find a solution for some prefix of the array, then it must be the correct solution as there exists only one. If we know it up to index $L$, then we can easily calculate for $L+1$. We know that $a_{L+1}=a_L\pm{r_{L,L+1}}$, so try both values and see if they contradict with the given ranges. There are $N^2$ ranges and there is time to check for contradictions in a range in $O(N)$, so the runtime is $O(N^3)$.
