@@ -1,0 +1,14 @@
+# USACO Silver 2018 Feb
+
+## 1. Rest Stops
+It is always optimal for Bessie to continue hiking until she stops at the rest stop with the maximum $c_i$. If she stops at an earlier rest stop with lower $c_i$, then it would be more advantageous to save those minutes for the stop with the maximum $c_i$. After the first stop, then it's advantageous to rest at the stop with the maximum $c_i$ out of the ones remaining, and so on. In other words, Bessie should stop at all rest stops with $c_i$ value greater all $c_i$ to its right. Computing these points can be done in $O(N)$ if we scan from right to left and check if a stop's tastiness is greater than the maximum tastiness so far.
+
+## 2. Snow Boots
+Brute force over all position and boot combinations. It can be done with a DFS, where for each node we can either discard some number of boots or move forward some number of steps. There are $NB$ nodes and $NB(N+B)$ edges, so the total time complexity is $O(NB(N+B))$.
+
+## 3. Teleportation
+Consider $d_i(x)$ to be a function returning the minimum distance to get from $a_i$ to $b_i$ assuming the second teleporter is at position $x$. This value is specified by $min(|a_i-b_i|,|a_i|+|b_i-x|)$. We can see that if $|a_i-b_i|\le{|a_i|+|b_i-x|}$, then the function is a straight line. Otherwise, it is a piecewise function that consists of a straight line, a V shape, and another straight line. The slopes must either be $-1$, $0$, or $1$. Also, we can figure out expressions for the breakpoints in terms of $a_i$ and $b_i$.
+
+The optimal location for the second endpoint is the minimum value of the function $f(x)={\sum^N_{i=0}} d_i(x)$. If we maintain the slope of each piecewise function for all $x$, then we can calculate the delta for each $x$ from the previous $x$ simply by adding the amount of functions with slope $1$ and subtracting the amount with slope $-1$. Using this information, we can say that the optimal $x$ must be one of the breakpoints of some $d_i(x)$, because if at any point the number of functions with slope $1$ exceeds the amount with slope $-1$, then it's optimal to continuously increase $x$ until this doesn't hold true (which will be at some breakpoint). If there are fewer or an equal amount of functions with slope $1$, then the current $x$ is subpar and so we keep on advancing $x$ until this doesn't hold true. The point is, we can sort the breakpoints of all functions, which is bounded by $4N$, and then only have to iterate over these values. The number of functions with slopes $1$ and $-1$ don't change between breakpoints, so it's easy to quickly calculate the change from the previous breakpoint. This produces an $O(NlogN)$ algorithm.
+
+Note: my code does not assume that the first teleporter is at position $0$

@@ -16,7 +16,7 @@ vector<vector<bool>> states;
 void dfs(int cur, int b) {
     // if possible to get to end
     Boot boot = boots[b];
-    //cout << boot.s;
+
     if (states[cur][b]) {return;}
 
     states[cur][b] = true;
@@ -57,12 +57,4 @@ int main() {
     }
     dfs(0,0);
     cout << ans << "\n";
-
-    /*
-     * dfs from tile 0.
-     * for every tile calculate the possible jumps,
-     * calculate if it is possible to jump to the end
-     * and also calculate possible switchings of boots
-     * if it is the last tile, update ans (min(ans,b)) and return.
-     */
 }
