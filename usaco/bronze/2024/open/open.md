@@ -1,5 +1,12 @@
 # USACO Bronze 2024 US Open
 
+## 1. Logical Moos
+Split the string by "or" strings. Each remaining string must either be a single boolean, or an "and" boolean expression. Next, precalculate what each prefix and suffix of the string evaluate to. Now for each query there's multiple cases:
+
+If the string to the left of $l$ and the string to the right of $r$ are both "and", then find the endpoints of these two "and" expressions. Everything to the left of the left bound is the prefix string, everything to the right of the right bound is the suffix string, and everything between them is the middle string. If either the prefix/suffix string evaluates to true, then it is possible for the whole string to evaluate to true because the prefix/suffix are separated from the middle string by "or" strings. If they both evaluate to false, then check if the middle string can evaluate to true. This is possible if all the other booleans in the middle string are equal to "true", because we know that the middle string is all separated by "and" strings. An easy way to check this is if the prefix up to $l$ and the suffix up to $r$ both evaluate to true.
+
+The cases or/or and and/or can be handled in similar ways. The optimal time complexity for this approach is $O(N+Q)$ but it requires prefix sums, so my solution takes $O(QlogN)$.
+
 ## 3. Farmer John's Favorite Permutation
 It's good to start with the $O(N^3)$ algorithm. Each operation can be treated as removing one of the endpoints of the array, and giving us the new endpoint. So, across all operations we will always, at minimum, get the values (in some order) of $a_2\dots{a_{n-1}}$. We don't definitively know the values of $a_1$ and $a_n$, so just try all possible values. For each one just simulate the process to fill in the remaining values, and if there is a contradiction with the current array then this configuration is impossible.
 
