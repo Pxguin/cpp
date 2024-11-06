@@ -22,26 +22,13 @@ void test(vector<int> a, vector<int> b, int msg) {
 		cur.pb({to[t1],to[t2]});
 	};
 	// if a has size 1, don't do anything
-	// otherwise, pour into 2 if it's possible, otherwise 3
-	if (a.size()!=1) {pour(1,(a.back()!=b.back())+2);}
-
-	// you can either empty b or empty a
-	if (msg) {swap(to[0],to[1]); swap(a,b);}
-
-	// empty a, while it has size>1 then add it to tubes 2 or 3
-	while (a.size()>1) {pour(1,(a.back()!=b.back())+2);}
-
-	// pour tube 3 into tube 1 if possible
-	if (third==a.back()) {pour(3,1); third = -1;}
-
-	// empty 2 into tubes 1 or 3
-	while (b.size()>1) {pour(2,(b.back()!=a.back())*2+1);}
-
-	// pour 2 into 1 if possible
-	if (b.back()==a.back()) {pour(2,1);}
-
-	// pour tube 3 back into 2 if possible
-	if (third!=-1) {pour(3,2);}
+	if (a.size()!=1) {pour(1,(a.back()!=b.back())+2);} // otherwise, pour into 2 if it's possible, else 3
+	if (msg) {swap(to[0],to[1]); swap(a,b);} // you can either empty b or empty a
+	while (a.size()>1) {pour(1,(a.back()!=b.back())+2);} // empty a, while it has size>1 then add it to tubes 2 or 3
+	if (third==a.back()) {pour(3,1); third = -1;} // pour tube 3 into tube 1 if possible
+	while (b.size()>1) {pour(2,(b.back()!=a.back())*2+1);} // empty 2 into tubes 1 or 3
+	if (b.back()==a.back()) {pour(2,1);} // pour 2 into 1 if possible
+	if (third!=-1) {pour(3,2);} // pour tube 3 back into 2 if possible
 	
 	if (cur.size()<ans) {ans = cur.size(); best = cur;}
 	cur.clear();
