@@ -1,7 +1,6 @@
 # USACO Gold 2020 December
 
 ## 1. Replication
-
 Simplify the grid down to having only one $S$ position. Consider what happens in the first $D$ minutes, before the first replication. Any square within distance $D$ of the starting position will be reachable, which we can calculate with BFS. To extend the problem to having as many $S$ positions as possible, just do a multisource BFS. 
 
 In fact this goes for every block of $D$ minutes. If you are at position ($x$,$y$) and have replicated $K$ times already, then you will still do BFS from this position, considering the centers of each group. But there is the extra detail that you need to check if any rocks are in the current group of robots. To do this, let's see if the closest rock to the center of the group is within distance $K$: if it is then there is a rock inside the group. Find the closest rocks to all positions with a BFS in $O(N^2)$. 
@@ -11,3 +10,12 @@ Also, note that we only care about the earliest time we get to any position. The
 After this we have for every position the earliest time we get to it, which effectively tells us how large the group is at that position. We must find the union of all these groups; any square inside the union will contribute to the answer. To find the union we'll do a third BFS. For a given group that has gone through $K$ replications, we will mark the center as distance $K$, the four squares around it as distance $K-1$ (i.e. the robots that were added at the first replication), the ones around them as $K-2$, etc (denoted $R$). Then our BFS sources are the centers of each group and we want to find the maximum $R$ for every square. When we go to each node's neighbors their distance is $R-1$. When $R$ is $0$, then we'll obviously stop. At the end, any node with a non-infinite distance contributes to the answer. (to implement this efficiently I maintain a queue and a sorted vector, so $O(N^2+N^2log(N^2))$. Also there is the caveat where a group of robots may move at a time that's a multiple of $D$ without issue but after replication will collide with rocks.) 
 
 Anyways, the complexity is $O(N^2+N^2log(N^2))$ (although there's a noticeable coefficient on the $N^2$ with all the BFS and queue additions).
+
+## 3. Square Pasture
+Same concept as the editorial but implemented less elegantly. The problem is solved similarly to Rectangular Pasture but with more care needed to make the pasture a square shape, so solve that first.
+
+For a given subset of cows, find the strictest rectangle (denote the size $W*H$) that contains all cows in this set. This is what we found for Rectangular Pasture. Now, we need to find, if this is extended to a square of side length $max(W,H)$, then if no new cows will be added into the set.
+
+If $W>H$, then we can swap all x and y coordinates and rerun the algorithm. For a rectangle then, we must find out if the square of size $H*H$ will contain any new cows. This can be done by storing the closest cows to the left and right of the rectangle; same for the minimum x-coord. These are the strictest candidates when the rectangle becomes a square, so just check if the distance between them minus $2$ is greater than/equal to $H$ (minus $2$ because the square can't contain fractions of cells). 
+
+So first, iterate over all pairs of cows ($i$ and $j$). I will call the rectangle formed by $i$ and $j$ the initial rectangle, $I$. When this rectangle is extended infinitely in the y-axis, call it the bounding rectangle, $B$. Then, for each cow such that is in $B$ and below $I$, find the cow (in $B$, above $I$) with the maximum y-value such that a valid square can still be formed. It should hold that valid squares can also be formed with all cows (in $B$, above $I$) with a lower y-coordinate than this cow. This can be accomplished with a 2p algorithm in $O(N^3)$.

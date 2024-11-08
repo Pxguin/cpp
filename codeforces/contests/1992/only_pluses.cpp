@@ -1,14 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define ll long long
-#define pb push_back
-#define pii pair<int,int>
-#define mp make_pair
-#define f first
-#define s second
 #define FOR(i, a, b, s) for (int i = (a); i < (b); i += s)
-#define F0R(i, a) for (int i = 0; i < (a); i++)
 
 void solve() {
 	int a, b, c; cin >> a >> b >> c;
