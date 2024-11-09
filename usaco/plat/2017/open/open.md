@@ -1,0 +1,4 @@
+# USACO Gold 2017 US Open
+
+## 1. Modern Art
+For each color, find the strictest rectangle that could have been painted for that color. It's always optimal to do this because it allows flexibility for when this color could have been painted. After this, if there exists any cell that is an intersection of two or more rectangles (calculate with 2d prefix sums), then the final color of the cell must have been painted over another color; therefore, that color can't have been painted first (and mark it as such). At the end, any colors that we haven't marked off could have been first. Also, make sure to take care of the side case where there is only one visible painted rectangle. So, $O(N^2)$.
