@@ -1,0 +1,6 @@
+# USACO Gold 2021 December
+
+## 2. HILO
+Consider some HILO pair consisting of indices $i\dots{j}$. If you sort the array up to $j$, then $i$ and $j$ should be adjacent. Therefore, if each index is the LO in a HILO pair, then there is exactly one index that can contribute the HI in this pair. Store these indices in an array $hi[i]$.
+
+So we can iterate over all $x$ in increasing order and store which indices Elsie says LO at (array $L$). When transitioning from $x$ to $x+1$, we remove a suffix of $L$ and then append $x+1$; these operations can be performed with a stack. To calculate the answer for $x$, it would suffice to iterate over each element $i$ in the array $L$. The amount of times Elsie says HILO must be equal to the amount of unique $hi[i]$; if some $i$ is not part of a HILO pair, then this is only because $hi[i]$ is already part of a HILO pair with another index (so $hi[i]$ is still counted in the end). Finding and updating the number of unique $h[i]$ can be done with a frequency array. Preprocessing of $O(NlogN)$, but the main algorithm takes $O(N)$. 
