@@ -1,0 +1,4 @@
+# CSES Introductory Problems
+
+## Digit Queries
+The first $9$ numbers each contribute $1$ digit; the next $90$ numbers contribute $2$ digits, then $900$ contributing $3$, and so on. So from $k$, subtract $9*1$ digits if possible (the amount of numbers with $1$ digit), then subtract $90*2$ if possible, and so on. When you can't subtract anymore, then you'll know two things: the length of the number that the $kth$ digit is in, and also how many digits remain. All the remaining digits must belong to length $k$ numbers so take divide by $k$, and now you can easily figure out the exact number that the $kth$ digit is in. From here, just take the position that corresponds to the $kth$ digit. The above method yields an $O(QlogK)$ algorithm.
