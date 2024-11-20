@@ -14,4 +14,13 @@ The answer is the size of the union of all the sets, which can be computed with 
 ## Candy Lottery
 An expected value problem. The probability of getting a maximum of $M$ is $({M\over{K}})^N-({{M-1}\over{K}})^N$: this is the chance of getting $N$ values at most $M$ minus the chance of getting $N$ values less than $M$. The runtime is $O(NK)$ although you can achieve $O(KlogN)$ with binary exponentiation.
 
-!!! cses added some shit test cases that reduced the solve rate by 60% because they target inherent decimal inaccuracy. I updated code but it still doesn't work (idc for now, may try fixing later).
+$\begin{equation}
+E[X] = \sum_{x=1}^{i=k} ((\frac{x}{k})^n-(\frac{x-1}{k})^n)*x
+\end{equation}$
+$\begin{equation}
+E[X] = \frac{-(1^n+2^n+\cdots{+(k-1)^n})+k(k^n)}{k^n}
+\end{equation}$
+$\begin{equation}
+E[X] = k-\frac{1^n+2^n+\cdots{+(k-1)^n}}{k^n}
+\end{equation}$
+ I could only do it with python because the numerator overflows in cpp, and if I just calculate the normal equation then there's decimal precision issues.
