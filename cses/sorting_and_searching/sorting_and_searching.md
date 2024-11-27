@@ -1,5 +1,8 @@
 # CSES Sorting and Searching
 
+## Restaurant Customers
+This is a pretty classic problem. Maintain a scan line across the sorted endpoints and keep track of a counter for how many ranges are currently active. When you reach the start of a range, add one to the counter because this range is active, and when you reach the end of a range, subtract one from the counter because this range is no longer relevant. The complexity of the algorithm comes from sorting, which takes $O(NlogN)$.
+
 ## Playlist
 Solve with 2 pointers. Iterate over every left endpoint for a sequence, and for each one find the maximum right endpoint such that no two values repeat. First, the repetition can be maintained with a set. Second, the maximum right endpoint must monotonically increase for each left point; if you increase the left endpoint (and remove values from the sequence), then it's impossible that the maximum right endpoint will decrease with it. Because of the set, it takes $O(NlogN)$.
 
