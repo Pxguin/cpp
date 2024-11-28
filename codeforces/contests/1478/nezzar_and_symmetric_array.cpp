@@ -18,7 +18,7 @@ bool solve() {
 		if (d[2*i]!=d[2*i+1] || d[2*i]==d[2*i-2] || d[2*i]&1) {return false;} // check same conditions as above
 		if ((d[2*i-2]-d[2*i])%(2*(n-i))!=0) {return false;} // is the difference divisible by 2i (n-i in code because array is reversed)
 		last -= (d[2*i-2]-d[2*i])/(2*(n-i)); // if so, then find the next integer in a
-		if (last<=0) {return false;} // make sure it's non-positive
+		if (last<=0) {return false;} // make sure it's positive
 	} return true; // if all these checks pass, then an array exists
 }
 
