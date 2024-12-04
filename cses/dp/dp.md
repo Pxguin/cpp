@@ -24,6 +24,9 @@ This is quite similar to Coin Combinations II. Let $dp[i]$ be the maximum amount
 ## Array Description
 $dp[i][j]$ is the number of ways to build the array up to index $i$ with last element $j$. It's similar to Bovine Genetics (or the other way around ?) in that the base case for $dp[1][j]$ is brute-forced, but for the rest we can transition to $dp[i][x_i]$ by summing up $dp[i-1][x_i]$, $dp[i-1][x_i-1]$, and $dp[i-1][x_i+1]$. Time complexity is $O(NM)$.
 
+## Increasing Subsequence
+Find the LIS (longest increasing subsequence). Denote $dp_i$ as the minimum element such that an increasing subsequence of length $i$ ends on that element. Process all $x_i$ from left to right. Then, we want to modify all $dp_j$ satisfying $dp_{j-1}<x_i<dp_j$. $dp$ must be a strictly increasing array, so $x_i$ should update at most one index as well. Binary search on this index for an $O(NlogN)$ runtime.
+
 ## Elevator Rides
 Do bitmask dp. Define $dp[S]$ as a pair ${R,W}$, where $R$ is the minimum amount of elevator rides for subset $S$. $W$ comes in if there's a tie for $R$, because it denotes the maximum remaining amount of weight that can be added to the elevator.
 
