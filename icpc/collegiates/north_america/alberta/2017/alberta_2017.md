@@ -1,0 +1,6 @@
+# Alberta Collegiate Programming Contest 2017
+
+## 4. Lane Switching
+Comments: I shouldn't have spent this much time debugging. The most egregious case was that lines 31-32 were initially swapped, and it took me half an hour to debug that.
+
+Binary search on the answer. Because all locations and lengths are integers, the answer is either of the form $x.5$ or $x.0$, so we only need precision to one decimal place. To check for a given $X$, extend all the car boxes by $X$ in both directions, and we just have to check if it's possible to reach lane $N-1$ without intersecting any of the modified car hitboxes. Now treat the gaps between adjacent cars in the same lane as nodes; we can draw edges between gaps in adjacent lanes if the ACM car can transition from the first gap to the second. Iterate over all adjacent pairs of lanes and use a 2p algorithm to draw all the edges, which is bounded by $2M$. After this, run a dfs from the gap of the ACM car and see if it can reach any of the gaps in the last lane (or use dsu). If so, then $X$ works. All this together produces an $O(MlogM+MlogR)$ algorithm.
