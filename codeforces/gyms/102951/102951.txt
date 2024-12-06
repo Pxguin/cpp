@@ -1,3 +1,6 @@
+A. Maximum Distance
+Brute force all pairs and use the distance formula.
+
 D - Static Range Queries
 
 Coordinate Compression (first get all numbers to calculate offline) + Prefix sums
