@@ -1,7 +1,11 @@
 # USACO Platinum 2016 February
 
-## 2. Fenced In
+## 1. Load Balancing
+Binary search on $M$ and go through all possible vertical lines. For each vertical line, calculate the range of horizontal lines for each quadrant such that the there appears no more than $M$ cows in each quadrant. Then a vertical line is valid if the four ranges intersect. 
 
+To simplify this, I coordinate compress the cows so I can easily group them by x-coordinate. Then I sweep over all vertical lines, and maintain a 2p for the horizontal line to find the range for a set quadrant. Repeat for all four quadrants to get the ranges. $O(NlogN)$.
+
+## 2. Fenced In
 (solve the Gold version before).
 
 (or at least solve it but not implement it, like me lmao)
