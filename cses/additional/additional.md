@@ -1,5 +1,8 @@
 # CSES Additional Problems
 
+## Even Outdegree Edges
+First, there must be an even number of edges in every connected component. Then the problem can very easily be solved greedily for a rooted tree (however, the degree of the root may not be even in the end). If we arbitrarily direct each edge not part of the spanning tree and then solve the problem on the spanning tree, then we ensure that all but the root has an even outdegree. However, the root must too as a byproduct, because if the number of edges is even and all other nodes have even outdegree, then there must be an even number of edges remaining for the root. We can thus calculate this in $O(N+M)$.
+
 ## Multiplication Table
 Binary search on the median. To check, we make sure our value X is >= half of the values in the table.
 Do to this, iterate over every row of the table and count the number of values that X is greater than or equal to with some basic math.
