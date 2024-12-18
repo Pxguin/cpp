@@ -1,0 +1,25 @@
+# USACO Silver 2024 Dec
+
+## 1. Cake Game
+First, Elsie takes some prefix and suffix range, and Bessie takes the remaining middle range. The most cakes that Bessie can get is ${N\over{2}}+1$ cakes. We will show that it's always optimal for Bessie to take this many cakes. If she ends up with less, then it means that on some turn Elsie ate a stacked cake. There's obviously no reason for Bessie to stack a cake just for Elsie to eat it. Basically, both cows end up spending one turn, with Elsie getting more cake and Bessie's turn being wasted.
+
+So when Bessie plays optimally, she gets a range of ${N\over{2}}+1$ cakes and Elsie gets a combined range of ${N\over{2}}-1$ cakes, made up of some prefix and suffix range. Now we'll discuss Elsie's strategy. Elsie has freedom to eat from both endpoints, so she can manipulate Bessie's moves as Bessie doesn't want Elsie to eat a cake that she stacked. So out of all prefix suffix combos of length ${N\over{2}}-1$, it's clear that Elsie will take the ranges with the maximum yield. The rest of the cakes go to Bessie. Thus, we get a complexity of $O(N)$.
+
+## 2. Deforestation
+A greedy strategy is to iterate over all trees left to right and try removing each of them (if possible). Any two ranges are either disjoint, intersecting, or one is contained inside the other, so through some casework it should be clear that the greedy strategy works for all of these cases.
+
+Run a sweep line across all range endpoints and trees from left to right. Whenever we try to remove a tree, we need to consider all ranges containing this point, and see if all $t_i$ values are satisfied. If so, then cut this tree down and update all $t_i$ containing this point. Checking if all $t_i$ are satisfied and updating all $t_i$ both take $O(N)$, but can be simplified.
+
+We will define $c_i$ as the maximum amount of trees that can be removed from range $i$ while still satisfying the $t_i$ constraint. To do this, calculate the amount of trees in each range. Coordinate compression with prefix sums works, but I simplify things by using an ordered set. Now in the sweep line, whenever we reach the start of a range then just add $c_i$ to a multiset $M$. Checking if all ranges works is just seeing if the minimum in $M$ is greater than zero. If so, then subtract $1$ from all elements in the multiset. This allows us to check if $t_i$ are satisfied in $O(1)$. Now it's just left to do the range update.
+
+The inequality must hold $t_i>0$. If this works, we cut down the tree, so subtract $1$ from $t_i$. Thus, $t_i-1>0$ for the next tree and so on. But it's easier to check $t_i>1$. This is the fundamental idea behind the optimization. Let this variable on the right hand side, $C$, denote the total amount of trees that have been cut down so far. When we get to the start of a range we won't add $c_i$, we'll instead add $c_i+C$. Then if we reach a tree, we just check if it works by seeing if the minimum in $M$ is greater than the current $C$. If so, then we cut the tree down, so add $1$ to $C$. This effectively simulates a range update in $O(1)$, and so the total time complexity is simplified to $O((N+K)log(N+K))$.
+
+## 3. 2D Conveyer Belt
+We effectively have a functional graph. Also, we'll add an extra layer of cells outside the original grid such that no cell points outside the grid anymore. Call the cells in the extra layer red nodes, and all others will be white nodes.
+
+If a white node is in the same component as a red node, then it is usable; call it a good node. Unusable nodes are bad nodes. We will process all queries in reverse, so first flood fill from all red nodes to mark all nodes in their components as good. Then for all queries, the following logic holds: if this cell is a good cell, then don't do anything (i.e. keep the same direction) because it's already good. Otherwise, check all four directions it can go to. If one of these adjacent cells is good, then this cell can be in a good component, so direct it towards that cell. After this, flood fill from this node to mark all other cells that can be in its component as good. $O(N^2+Q)$ time complexity.
+
+## Comments:
+Full solved in 2 hours, which was refreshing, because last year I couldn't solve more than one problem in any contest. I spent a lot of effort this year so I'm glad that it turned out to something meaningful. 
+
+My personal rating of difficulty (low to high) is 2D Conveyer Belt, Deforestation, then Cake Game. In the contest I solved the problems in reverse order (because I thought the difficulty was in the reverse order)... but fortunately it worked out. Cake Game is quite difficult (games are difficult for me), so it took 1 hour. My logical steps weren't quite on point and it took a lot of circling and guessing before I got to a solution. I would rate it 2100 on codeforces. Deforestation is quite traditional, aside from the greedy strategy needed to solve it. I would rate that 1900; it took me 30 minutes to solve. The third problem (conveyer?) is pretty similar to the Gold problem Farm Updates. I would rate it 1900 too, and it also took me 30 minutes to solve.
