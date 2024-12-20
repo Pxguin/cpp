@@ -1,0 +1,6 @@
+# SAPO 2014 Final Round
+
+## 2. The Stables of Genghis Khan
+Sort the array $X$. Every subtree in the BST then corresponds to a range $(X_i,X_j)$. This means that all nodes $X_k$ for $i<k<j$ are in this subtree, and all numbers in the range $(X_i,X_j)$ pass through this subtree. For example, assume the subtree corresponds to the range $(1,100)$, and our root is $50$. After comparing with the root, the number passes to either the left or right subtrees, corresponding to $(1,50)$ and $(50,100)$.
+
+This effectively gives us a recursive transition. Let $dp[i][j]$ be the minimum cost for all numbers in the range $(X_i,X_j)$ for the subtree built of all $X_k$ for $i<k<j$. We can use dp on ranges to find an answer for some range $(X_i,X_j)$. Try rooting the tree for all $k$ at $i<k<j$. Then the left subtree corresponds to $dp[i][k]$ and the right is $dp[k][j]$. Additionally, all $X_j-X_i-1$ numbers now have to go through one extra comparison (the root of this subtree) to get to the left/right subtrees, so add this to the answer. We get that $dp[i][j]$ is the minimum $dp[i][k]+dp[k][j]+(X_j-X_i-1)$, and the total complexity is $O(N^3)$.
