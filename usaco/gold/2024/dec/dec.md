@@ -1,0 +1,11 @@
+# USACO Gold 2024 Dec
+
+## 1. Cowdependency
+Group all cows by label, so $L_i$ denotes the sorted set of all cows with label $i$. A very simple greedy strategy works in $O(N^2)$; assuming we have fixed $x$, go through each $L_i$ and group the maximum prefix into one group. Then delete this group, and continue onwards. This is pretty simply implemented with 2p.
+
+There's two variables at play here, $x$ and $d$. $x$ is the max group size and $d$ is the number of groups. It should be clear that because all groups are disjoint, then for a valid $(x,d)$ pair, we get the relationship $xd\ge{N}$, so they are inversely proportional. Therefore, we can afford just fixing $x$ and $d$ each up to $\lceil\sqrt{N}\rceil$. If we fix $x$, then we are to find the minimum number of groups possible $M$, which we have already figured out with the greedy solution. We can say that $M$ is a candidate for any group size $\ge{x}$. If we fix $d$, then we are to find the minimum value of $x$ such that we have at most $d$ groups with that group size. So, letting this minimum be $S$, binary search on $S$, and we can say $d$ is a candidate for any group size $\ge{S}$. 
+
+If we combine these answers together, then we can get the minimum $d$ for any label for any $x$. Just sum up all the minimum $d$ for a specific $x$ across all labels, and we have an answer for the whole group of cows at that $x$. Putting it all together, the algorithm runs in $O(N\sqrt{N}logN)$.
+
+## Comments
+I solved problem $1$ pretty smoothly until I got TLE on test cases 10 and 11, and spent $30$ minutes coming up with alternate ideas when in fact it was actually a very simple fix. The idea of inversely proportional variables seems to be pretty common at this level because I have already bumped into two other problems like this. A very similar problem is Codeforces [2035E - Monster](https://codeforces.com/problemset/problem/2035/E) and less similarly, RMI 2017 - [Hangman 2](https://csacademy.com/contest/rmi-2017-day-1/task/hangman2/). 
