@@ -7,7 +7,7 @@ If you can get all cows to the same hunger level, then you can also get them all
 
 So define $dp[i][j]$ as the amount of ways for the $ith$ cow to have a hunger level of $j$ when following the aforementioned process. Then, $dp[i][j]$ equals the sum of all $dp[i-1][k]$ such that $k+j\le{h_i}$, or ${\sum\limits^{h_i-j}_{k=0}} dp[i-1][k]$. It is critical to realize you can use prefix sums to speed this up from $O(N(max h_i)^2)$ to $O(N(max h_i))$; I spent a considerable amount of time trying to optimize the wrong part of the problem.
 
-When $N$ is odd, we can observe that if we can get all cows to the same hunger level $H$, then it is impossible to get them to any $H$. This means we want to calculate the answer for all $H$ independently and add them up, which takes $O(N(max h_i)^2)$, and is also the final runtime.
+When $N$ is odd, we can observe that if we can get all cows to the same hunger level $H$, then it is impossible to get them to any $H$. This means we want to calculate the answer for all $H$ independently (by use of the above dp) and add them up, which takes $O(N(max h_i)^2)$ because each individual dp takes $O(N(\max{h_i}))$.
 
 ## 2. Farm Updates
 Another case of simulating the process, then backtracking in reverse order. The problem says that roads can only be added between two active farms, so once farms become inactive then they will never become active again.

@@ -1,0 +1,4 @@
+# USACO Silver 2016 Feb
+
+## 3. Milk Pails
+Create a node $(A,B)$ representing if we can get $A$ units of milk in the first pail, and $B$ units in the second pail. Run a BFS from $(0,0)$ and only consider nodes with a distance $\le{K}$ away from the source, as we can only repeat the operation at most $K$ times. We can figure out the nodes we can transition to from $(A,B)$ by trying each valid operation. For each valid node $(A,B)$, the value of $|M-M'|=|M-(A+B)|$, and so we can compare it with the answer and take the minimum result. So, the time complexity is $O(XY)$ (although $O(XYK)$ would also have passed).
