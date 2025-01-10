@@ -12,6 +12,11 @@ This is a pretty classic problem. Maintain a scan line across the sorted endpoin
 ## Movie Festival
 Also classical. We want to constantly pick the event that finishes the earliest, because it gives more room for future events. So initialize a variable $t=0$ as the time we finished watching the last movie. Then sort all movies by ending time and then go through each of them; if we can watch this movie, then just watch it, and then update $t$ because this movie now becomes the last movie that we watched. So, $O(NlogN)$.
 
+## Sum of Two Values
+Sort the array and use a 2p method. Let the pointers be $l$ and $r$. If $a_l+a_r=X$, then we have found a solution. If $a_l+a_r<X$, then we must increase the sum so increase $l$ by $1$. Else, $a_l+a_r>X$, so we must decrease the sum by decrementing $r$ by $1$.
+
+$O(NlogN)$ time complexity.
+
 ## Stick Lengths
 The most optimal length is the median of all the sticks. For an explanation, see the first paragraph of Sliding Window Cost (a problem in this same section). Sorting gives the $O(NlogN)$ complexity.
 
@@ -23,10 +28,10 @@ Iterate over blocks high to low, and keep track of the size of the last block of
 
 ## Nested Ranges Check
 Well my IOI Empodia solution works on the official test data but fails on the codeforces IOI archive extra tests, so I'm busy debugging that. This nested ranges check algorithm is part of my solution and I seem to have done it correctly because it works on the CSES tests. 
-s
+
 Sort all ranges by increasing $l$, then by decreasing $r$ in the case that $l$ is the same. 
-To check whether a range is contained inside another one store the maximum $r$ value so far (call it $R$) and if this range has $l \le R$ and $r \le R$ then it is contained.
-To check whether a range contains another range store a stack of ranges. When you add a new range, pop elements from the stack while those ranges contain this one. The elements left in the stack at the end don't contain any ranges inside them.
+Iterate over ranges in this order. To check whether a range is contained inside another one, store the maximum $r$ value so far (call it $R$) and if this range has $l \le R$ and $r \le R$ then it is contained.
+To check whether a range contains another range, store a stack of ranges. When you add a new range, pop elements from the stack while those ranges contain this one; those ranges contain this range. The elements left in the stack at the end don't contain any ranges inside them.
 
 ## Room Allocation
 Store a priority queue (set in my solution) of the departure times of each active person. Process people by arrival time. We want to first check if any rooms have opened up; in other words, pop the top of the priority queue while it's less than the current arrival time. After this, assign this person a room and add it to the priority queue. The answer is the maximum size of the priority queue at any given point, and it's calculated in $O(NlogN)$.
@@ -34,8 +39,33 @@ Store a priority queue (set in my solution) of the departure times of each activ
 ## Tasks and Deadlines
 When we finish a task $i$, then we effectively lose $d_i$ revenue for this task and all future tasks. So it's clear that we want to prioritize the tasks with lower $d_i$. Sort all tasks and calculate the answer in $O(NlogN)$.
 
+## Sum of Three Values
+Here is technically a three pointer solution. Iterate over all possible values of the left value, $l$. Then, just run the two pointer solution for all $i>l$, with the goal to get a sum of $X-a_l$.
+
+## Sum of Four Values
+We can decompose the four element sum into a two pair sum, and then the goal is to find two pairs with sum adding up to $X$, such that their indices don't overlap.
+
+I had a very dumb brute-force check in mind (store at most 4 different pairs for each possible sum value), but fortunately I found a more elegant way to do it. Iterate over a midpoint $M$ in decreasing order, and only keep track of all pairs $(c,d)$ satisfying $\min(c,d)>{M}$ in a map. We will then test all pairs $(a,M)$ ($a<M$) against the map. This ensures that there is no overlap between any pair $(a,M)$ and any pair $(c,d)$. Using a map actually times out but a hashmap passes, which takes $O(N^2)$.
+
+## Nearest Smaller Values?
+?
+
+## Subarray Sums I
+All $a_i$ are positive so do a 2p algorithm Ok. This is as helpful as leaving this space blank
+
 ## Subarray Sums II
 For every prefix sum $A$ find the # of prefix sums to the right of this with value $A+x$, which can be done by maintaining a map of all PS and their frequency, and then subtracting $A$ before calculating its value (for all $A$).
+
+## Subarray Divisibility
+Let the prefix sum array be $P$. If $P_i\equiv{P_j}\pmod{N}$, then $\sum_{k=i+1}^j{a_k}$ is divisible by $N$. Store a frequency array over all values of $P$, denoted $F$. $F_i$ counts the amount of indices $j$ satisfying $P_j=i$. For each $F_i$, there are $F_i\choose{2}$ subarrays that can be formed, so add that to the answer.
+
+I think the time complexity is $O(N)$
+
+## Subarray Distinct Values
+Maintain a 2p algorithm. Iterate over the left endpoint $l$ of the subarray and find the maximum right endpoint $r$, such that there exist $\le{K}$ distinct values in the range $[l,r]$. Counting the number of distinct values can be done by using a frequency array. Then add $r-l+1$ to the answer; it's the amount of subarrays that work with a left endpoint at $l$.
+
+## Array Division
+?
 
 ## Sliding Window Median
 Store the sliding window and use an ordered set/order statistic tree to select the median (in $O(NlogN)$). Alternatively, binary search on a BIT (which takes $O(Nlog^2N))$. Or follow the solution to the next problem, which describes one in $O(NlogN)$.
