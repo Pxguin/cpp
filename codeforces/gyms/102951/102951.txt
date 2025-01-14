@@ -1,6 +1,13 @@
 A. Maximum Distance
 Brute force all pairs and use the distance formula.
 
+B. Studying Algorithms
+Learn algorithms by increasing time
+
+C. LCS on Permutations
+Connect positions i and j with a line segment if a[i]=b[j]. Compute the maximum number of non-intersecting
+segments which is done with LIS.
+
 D - Static Range Queries
 
 Coordinate Compression (first get all numbers to calculate offline) + Prefix sums
