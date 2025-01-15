@@ -17,7 +17,7 @@ int main() {
     F0R(i,n) {
         cin >> candies[i].f >> candies[i].s;
     }
-    sort(all(candies),[](pii& x, pii& y) { // sort by increasing x, then decreasing y
+    sort(all(candies),[](pii& x, pii& y) { // sort by increasing x, then increasing y
         if (x.f+x.s==y.f+y.s) {return x.s-x.f < y.s-y.f;}
         return x.f+x.s < y.f+y.s;
     });
