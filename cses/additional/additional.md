@@ -30,3 +30,14 @@ In total, the runtime is $O(N^3)$.
 
 ## Stick Divisions
 Very AtCoder type problem (that I couldn't solve by myself). Start out with all $N$ sticks, and repeatedly combine the two sticks with the smallest length until there's only one stick remaining. We can prove this fact as follows: the answer must be the sum of $x_id_i$ for all $d_i$, with $x_i$ as some coefficient. If we extract all these $x_i$, then by repeatedly combining any two identical $x_i$ with $x_i-1$, we should end up with one $0$ at the end. This is to say that we initially set all $x_i=0$. When we combine two sticks, we increase the $x_i$ of all sticks combined inside those two sticks. So it should be clear that we want to constantly combine the sticks with the smallest lengths. It's never the case that we backtrack and combine substicks of our current sticks, because if that's the case then the substicks should already have been combined into one stick at any earlier point in time. This gives us an $O(NlogN)$ algorithm when using a priority queue.
+
+## Coding Company
+Sort all coders by $a_i$, so that the penalty for a group can be retrieved by looking only at the two endpoints of the subsequence. If the first coder in a team is $i$ and the last is $j$, then the penalty is $a_j-a_i$. This is essentially $(a_{i+1}-a_i)+(a_{i+2}-a_{i+1})+\dots+(a_j-a_{j-1})$.
+
+Let $dp[i][j][k]$ be the answer for the first $i$ people, given that the current penalty is $j$ and we have $k$ unfinished teams. Let $d=a_{i+1}-a{i}$.
+ - $dp[i+1][j+dk][k]\mathrel{{+}{=}}k\cdot{dp[i][j][k]}$ (add the $(i+1)th$ person to any existing team; $k$ ways to do this).
+ - $dp[i+1][j+dk][k+1]\mathrel{{+}{=}}dp[i][j][k]$ (start a new team with the $(i+1)th$ person, $1$ way to do this).
+ - $dp[i+1][j+dk][k-1]\mathrel{{+}{=}}k\cdot{dp[i][j][k]}$ (add the $(i+1)th$ person to an existing team, and then end that team).
+ - $dp[i+1][j+dk][k]\mathrel{{+}{=}}dp[i][j][k]$ (start and end a team with the $(i+1)th$ person; i.e. put it into its own solo team).
+
+Time complexity is $O(N^2X)$. A faster way to solve this problem is on [USACO guide](https://usaco.guide/problems/cses-1665-coding-company/solution). Essentially, the penalty is $a_j-a_i$ so it lets the cost at $i$ be $-a_i$ and the cost at $j$ be $a_j$ (and then does a knapsack, also in $O(N^2X)$).
