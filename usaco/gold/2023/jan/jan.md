@@ -1,5 +1,31 @@
 # USACO Gold 2023 January
 
+## 1. Find and Replace
+Servers are down which is pretty frustrating, but I'm almost definitely sure that my code works (except for MLE maybe because I could not test that).
+
+Build a tree on the strings, where each node corresponds to one of the strings and the children represent what string each of the characters in the string transform into next as a result of operations. 
+ - For example, assume there are two operations "a aab" "b cd". The nodes correspond to the strings "a" (starting string), "aab", and "cd". The string "a" is the root, and it points to the string "aab". "aab" has three children, for each of its characters. The first two point to nothing, and the third points to the string "cd", etc.
+
+Like a segment tree, we can store what range of letters in the final string the current node corresponds to, and dfs from the root, and combine segments together in order to get the final $[l,r]$ range. For now, we can store the indices that each segment corresponds to. We have to figure out the actual string that it corresponds to in order to get the answer, but I'll cover that later.
+
+Let $N$ be the amount of operations, $S=\sum{|s|}$, and $M=r-l+1$. The time complexity here is $O(NS+M)$. We have at most $M$ segments, and check at most $NS$ nodes. For each node, we have to look through all its children and see which ones belong to the segment. If the range of letters that it corresponds to lies in the range $[l,r]$, then we add it to the list of segments and stop there. Otherwise, if the range it corresponds to intersects $[l,r]$, then we have to dfs into its subtree. If it has no relation to $[l,r]$, then we don't care about it.
+
+Instead of searching through all children, observe that the amount of children that we will dfs into forms a range, so we can just binary search on the left and right endpoints of the range. By only considering children that are part of the final range, the time complexity is reduced to $O(NlogS+M)$ — we only consider at most a small factor of $N$ nodes. 
+ - The reason is as follows: we only dfs further from some node if one of the children for that node intersects $[l,r]$, but isn't contained inside $[l,r]$. There are at most $2$ of these children per node (at the left and right endpoints of the range). Call these children <i>bad</i> nodes.
+ - Initially, the range for the root has at most $2$ of these bad children (I'll assume it has 2 of them). This means that when we dfs to each of these children, then we effectively cut that range into two, so these children have at most $1$ bad child. It's easy to see that the amount of these bad nodes is non-increasing as we move further down the tree, so if the current node has only $1$ bad child, then it will never split again. So for those two bad children of the root, we consider a linear amount of nodes in their subtrees. This is precisely $N$, which is the maximum depth of the tree. For each node, we binary search, so the time complexity is $O(NlogS+M)$.
+
+Now we have the segment composition of the final range, and need to turn all the segments into strings. Let $L$ be the number of segments; we can say that the sum of all segments equals to $M$.
+
+There's two methods to try for this: we could traverse the subtree corresponding to each segment to find the string it corresponds to, but each dfs might take $O(N)$ so the complexity of this would be $O(LN+M)$. We could memoize what strings indices correspond to, but this takes a lot of memory. However, the only reason this takes up lots of memory is if there exists an operation that turns a character into another single character, as this doesn't change the size of the string. If all operations turn a character into a string of length $\ge{2}$, then the memory is bounded by a log factor.
+
+We can therefore just compress the tree to get rid of all operations that turn a character into another character. Now each node in the tree has at least two children. We will go with the first dfs solution; therefore, given that we're doing dfs into a subtree of some segment $i$ of length $T$, the worst case is when the number of nodes in the tree is maximized.
+ - The tree has $T$ leaves. Worst case is a perfect binary tree which will have $2T-1$ nodes. $\sum{T}=M$, so the time complexity is $O(M+NlogS)$.
+
+Alternatively, go with the memoizing solution. The worst case is when the sum of all segment sizes (string sizes) in the subtree is maximized.
+ - Idk what the worst case is, but it is probably a perfect $\sqrt{T}$-ary tree which gives a total string length of $T\sqrt{T}$? Meaning the total time complexity is $O(M\sqrt{M}+NlogS)$. I tried to analyze this and make some stronger data than the test cases, but it always ran as fast as the above solution.
+
+As a consequence, you could avoid storing the indices of the segments altogether, and simply just continue the dfs on those segments (this is assuming that the tree is compressed).
+
 ## 2. Lights Off
 This problem is so difficult and I don't know how the solve rate by promoters was so high. The solution is quite elegant though. Truthfully, most of the problem relies on a fundamental property with xor that was very difficult for me to correctly apply.
 
