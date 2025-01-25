@@ -1,4 +1,0 @@
-2 - Fruit Feast
-
-DP to find the max value without drinking water. Then, for every currently achievable value, divide by 2 (drinking water).
-After this, do DP again from these new values and take the max of the two DPs.
