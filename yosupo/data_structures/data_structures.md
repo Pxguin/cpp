@@ -1,5 +1,8 @@
 # data structures
 
+## Static Range Sum
+Use prefix sums. $ps_i=\sum_{i=0}^i{a_i}$. Then, $\sum_{i=l}^r{a_i}=ps_r-ps_{l-1}$. Calculating prefix sums and answering queries is done in $O(N+Q)$ total complexity.
+
 ## Queue Operate All Composite
 When expanding the function, the coefficient on x is the product of all $a_i$. The constant is the sum of values $cb_i$ where $c$ is equal to the product of all $a_j$ satisfying $j>i$. 
 

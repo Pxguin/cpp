@@ -16,6 +16,13 @@ The max width of the ad for this height will be right-left+1.
 ## Maximum Building I
 This builds on the Advertisement problem. We can fix the bottom row and then calculate the maximum area like this similarly to the aforementioned problem.
 
+## Cyclic Array
+Consider the greedy strategy of constantly selecting the longest subarray possible. This works if the array isn't cyclic, but to deal with the cyclic case we will have to try the algorithm from each possible cycle and take the minimum. This is efficiently done with binary lifting: precalculate $lift[i][p]$ as the maximum endpoint of the $2^p$ th subarray, given that the first one starts at position $i$.
+
+My code has a more complex solution. The greedy algorithm with binary lifting can be tested in $O(log^2N)$ per cycle by binary searching on the $lift$ array, so $O(Nlog^2N)$ in total. At each point, we find the maximum jump that doesn't overshoot the target endpoint. It can be sped up from $O(Nlog^2N)$ to $O(NlogN)$ by running all the algorithms concurrently (with 2 pointers) as to avoid the need for an independent binary search each time.
+
+Either way, the time complexity is $O(NlogN)$.
+
 ## Xor Pyramid
 I'll update when I prove the stuff used. For now we want to find how many times each element on the bottom row is xored by the time you reach the top element, which are the binomial coefficients for $n-1$. Proof: Consider two cells with values $A\oplus{B}$ and $B\oplus{C}$. Then the value above it will have value $A\oplus{B}\oplus{B}\oplus{C}$, i.e. the union of the two values below it. So, in this fashion, the amount of times a cell $k$ is xored is the amount of unique paths from the topmost cell to cell $k$, provided that you can only go from a cell to the two cells directly below it. There are ${n-1}\choose{k}$ ways to do this - you have $n-1$ total edges and want to select a subset of $k$ edges going right, defaulting the rest $n-1-k$ edges to going left.
 
