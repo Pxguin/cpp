@@ -24,6 +24,15 @@ This is quite similar to Coin Combinations II. Let $dp[i]$ be the maximum amount
 ## Array Description
 $dp[i][j]$ is the number of ways to build the array up to index $i$ with last element $j$. It's similar to Bovine Genetics (or the other way around ?) in that the base case for $dp[1][j]$ is brute-forced, but for the rest we can transition to $dp[i][x_i]$ by summing up $dp[i-1][x_i]$, $dp[i-1][x_i-1]$, and $dp[i-1][x_i+1]$. Time complexity is $O(NM)$.
 
+## Counting Towers
+Let a small block be a block of width $1$ and a big block be a block of width $2$. At any height, the topmost blocks are either two small blocks or one big block.
+
+So let $dp[i][0/1]$ be the answer for height $i$, given the last block of the tower is two small blocks or one big block. If it's two small blocks, then we can either extend either of the existing small blocks or add a new $1\times{1}$ small block, or add a new big block. For a big block, we can either add two small blocks, a new big block, or extend the current big block.
+ - $dp[i+1][0]=4\cdot{dp[i][0]}+dp[i][1]$
+ - $dp[i+1][1]=dp[i][0]+2\cdot{dp[i][1]}$
+
+Time complexity: $O(N+T)$; we precalculate queries.
+
 ## Increasing Subsequence
 Find the LIS (longest increasing subsequence). Denote $dp_i$ as the minimum element such that an increasing subsequence of length $i$ ends on that element. Process all $x_i$ from left to right. Then, we want to modify all $dp_j$ satisfying $dp_{j-1}<x_i<dp_j$. $dp$ must be a strictly increasing array, so $x_i$ should update at most one index as well. Binary search on this index for an $O(NlogN)$ runtime.
 
