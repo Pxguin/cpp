@@ -1,8 +1,0 @@
-If we rotate the grid 45 degrees such that the y=x line becomes the y axis and scale by sqrt(2), then a point
-(x,y) becomes (x-y,x+y). The movement of the rabbit becomes a shift in each of the four cardinal directions by 2 units.
-
-Proof: (x+yi)*cis45*sqrt(2) = (x-y,(x+y)i)
-
-The original distance between two points is the max of the x distance and the y distance; now, it is half of the manhattan distance.
-Also, it is clear that any two points are reachable from each other if both the x distance and y distance are even.
-So we can split the points up into two groups and calculate the sum of all manhattan distances.

@@ -31,4 +31,10 @@ int main() {
 	FOR(i,n,n+k+1){
 		ans = (ans + mul(C(i-1,n-1),mul(exp(26,n+k-i),exp(25,i-n))))%mod;
     } cout << ans << '\n';
+
+	/*
+	for (int i=1;i<=k+1;i++) {
+		ans = (ans + mul(exp(26,i-1),mul(C(n+k-i,n-1),exp(25,n+k-i-(n-1)))))%mod;
+    }
+	*/
 }
