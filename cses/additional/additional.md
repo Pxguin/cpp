@@ -35,6 +35,29 @@ It may be the case that the range $[i,k] = [i,j]$, in which case $dp[i][j]=dp[i+
 
 In total, the runtime is $O(N^3)$.
 
+## Maximum Building II
+Similar to the first Maximum Building, go through each row, and for each index in the row, use monotone stacks to calculate the nearest non-larger height to the left, and the nearest strictly smaller height to the right. Let these values be $L_{i,j}$ and $R_{i,j}$. Let the height of this index be $H_{i,j}$ (i.e, the amount of empty spaces above this index until a blocked space, plus one).
+
+The bounding box for $(i,j)$ is formed by the left and right sides $L_{i,j}+1$ and $R_{i,j}-1$, and the top and bottom sides $i-H_{i,j}+1$ and $i$. The claim is that for each of these bounding boxes, we can count all the subrectangles in this bounding box satisfying the following two conditions:
+ - It passes through $(i,j)$.
+ - The bottom edge is at $i$.
+
+And, the sum of all these will give us our answer. Visualization/casework is very helpful for understanding this.
+
+We can assume WLOG that $H_{i,j}=1$. When restricted to the bounding box of $(i,j)$, the number of subrectangles of size $A\times{B}$ is the same as the number of subrectangles of size $1\times{B}$. So we can just calculate for height $1$, and then use difference arrays to update across all possible heights (up to $H_{i,j}$).
+
+Let $f_{i,j}(B)$ denote the amount of $1\times{B}$ subrectangles for the bounding box of $(i,j)$. As $B$ increases, $f_{i,j}(B)$ first increases at a slope of $1$, then plateaus, then decreases at a slope of $1$ (until the number of subrectangles reaches $0$ again). 
+
+Basically, there are only four event points we need to store: 
+ - When the function first goes up: at $B=1$.
+ - When it first plateaus: $B=\min(j-L_{i,j},R_{i,j}-j)+1$.
+ - When it first goes down: $B=\max(j-L_{i,j},R_{i,j}-j)+1$.
+ - When it first stops going down: $B=R_{i,j}-L_{i,j}$ (but for implementation purposes use $B=R_{i,j}-L_{i,j}+1$).
+
+Insert $1,-1,-1,1$ at these four values respectively, and take the prefix sum of this difference array to get the slopes of $f_{i,j}(B)$. Take the prefix sum again to get the actual values of $f_{i,j}(B)$. Remember from earlier that first, we want to use difference arrays to add these values across all heights up to $H_{i,j}$.
+
+And so, we have calculated the answer in $O(NM)$.
+
 ## Stick Divisions
 Very AtCoder type problem (that I couldn't solve by myself). Start out with all $N$ sticks, and repeatedly combine the two sticks with the smallest length until there's only one stick remaining. We can prove this fact as follows: the answer must be the sum of $x_id_i$ for all $d_i$, with $x_i$ as some coefficient. If we extract all these $x_i$, then by repeatedly combining any two identical $x_i$ with $x_i-1$, we should end up with one $0$ at the end. This is to say that we initially set all $x_i=0$. When we combine two sticks, we increase the $x_i$ of all sticks combined inside those two sticks. So it should be clear that we want to constantly combine the sticks with the smallest lengths. It's never the case that we backtrack and combine substicks of our current sticks, because if that's the case then the substicks should already have been combined into one stick at any earlier point in time. This gives us an $O(NlogN)$ algorithm when using a priority queue.
 
