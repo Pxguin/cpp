@@ -8,3 +8,6 @@ The initial radius is $[x-R,x+R]$. The two outermost haybales in this explosion 
 Fix $L$ and we have to consider all $R>L$. The two values $(x_R-x_L)/2$ and $r_R+1$ have different calculation values; we can store all $x_R$ in a multiset and $r_R$ in another multiset, and then extract the minimums to do calculation. We can only insert either $x_R$ or $r_R$ for each $R$, because inserting both values into the multisets will treat them independently (which is not good). $r_R+1 \ge (x_R-x_L)/2$ until $L$ reaches $x_R-(r_R+1)$, so we can insert $r_R$ until that point, then remove it and insert $x_R$ instead. So, it takes $O(NlogN)$.
 
 btw, editorial has interesting solutions. It uses greedy 2p to avoid the last paragraph, and also has a nested binary search solution. The nested binary search solution can be reduced by using the dp arrays instead of a second binary search.
+
+## 2. Radio Contact
+$dp[i][j]$ equals the minimum cost given that FJ at at position $i$ in his path and Bessie is at position $j$ in her path. At any point, either FJ moves forward, Bessie moves forward, or both move forward, so we update those respective dp states. Time complexity is $O(NM)$.

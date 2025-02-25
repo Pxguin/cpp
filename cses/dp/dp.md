@@ -33,6 +33,11 @@ So let $dp[i][0/1]$ be the answer for height $i$, given the last block of the to
 
 Time complexity: $O(N+T)$; we precalculate queries.
 
+## Edit Distance
+$dp[i][j]$ is the minimum cost given we have matched up all $i-1$ characters of the first string and all $j-1$ characters of the second string. We can either delete the character at position $i$, so transition to $dp[i+1][j]$. Replacing character $i$, and then matching $i$ with $j$, gives us the transition to $dp[i+1][j+1]$. Adding a character and matching it with $j$ gives the transition to $dp[i][j+1]$.
+
+Time complexity: $O(NM)$.
+
 ## Increasing Subsequence
 Find the LIS (longest increasing subsequence). Denote $dp_i$ as the minimum element such that an increasing subsequence of length $i$ ends on that element. Process all $x_i$ from left to right. Then, we want to modify all $dp_j$ satisfying $dp_{j-1}<x_i<dp_j$. $dp$ must be a strictly increasing array, so $x_i$ should update at most one index as well. Binary search on this index for an $O(NlogN)$ runtime.
 
