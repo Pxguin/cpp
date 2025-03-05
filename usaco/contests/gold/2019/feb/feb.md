@@ -1,5 +1,8 @@
 # USACO Gold 2019 Feb
 
+## 1. Cow Land
+We combine euler tour and lca. With Euler tour and fenwick tree, we can find the xor sum of the path from any node $i$ to the root (let it be $X_i$). So the xor sum of all nodes on the path between $i$ and $j$ is $X_i\oplus{X_j}\oplus{e_{lca(i,j)}}$. We can do this in $O((N+Q)logN)$.
+
 ## 2. Dishwashing
 I may or may not have tunnel visioned on a binary search. But the official editorial is practically just an improved version of the binary search, which I was trying to figure out.
 

@@ -18,3 +18,11 @@ The distance between two nodes is $depth[a]+depth[b]-2\cdot{lca(a,b)}$. Use bina
 
 ## Subtree Queries
 Perform an Euler tour to flatten the tree into an array (push nodes based on the preorder traversal), such that each node is directly followed by all nodes in its subtree. The array can be updated and queried with a segment tree, so $O((N+Q)logN)$.
+
+## Path Queries
+When the values are static (only type 2 queries), we can just add each node's value to all nodes in its subtree. The resulting values of each node will give the sum of values to the root.
+
+We can flatten the tree with an Euler tour and add to each node's subtree / get point queries with a BIT. This also supports changing the values of nodes, so the total time complexity is $O((N+Q)logN)$.
+
+## Distinct Colors
+Small to large merging is the easiest way, because we can pretty much just brute force the problem to get a time complexity of $O(Nlog^2N)$. There exists a more complicated solution using Euler tour + distinct values queries (another cses problem) but I was too lazy to implement that.

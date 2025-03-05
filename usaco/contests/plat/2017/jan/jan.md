@@ -1,5 +1,8 @@
 # USACO Plat 2017 Jan
 
+## 1. Promotion Counting
+Process cows in decreasing order of proficiency such that we guarantee that for each cow $i$, all cows $j$ that have already been processed must satisfy the rule $p(j)>p(i)$. It remains to calculate the amount of these $j$ that are in the subtree of $i$, which is a simple range query (after taking the Euler tour) that can be processed with a BIT. So, $O(NlogN)$.
+
 ## 3. Subsequence Reversal
 ok this took me too long to debug. I initially was hesistant to go with this solution because it's a weird 4d dp array but everything else I tried failed, so oh well. 
 
