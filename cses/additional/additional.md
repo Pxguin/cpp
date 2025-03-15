@@ -13,6 +13,13 @@ For every height, find the largest width of the advertisement assuming this is t
  - This implies finding the nearest smallest values on the right and left side of each value, which can be done with a stack.
 The max width of the ad for this height will be right-left+1.
 
+## Graph Girth
+Fix some node $i$ in the cycle and bfs to find the shortest path to all other nodes. If such an edge exists between nodes $a$ and $b$, then a candidate for the answer is $dist[a]+dist[b]+1$, if we complete a cycle with the edge $(a,b)$.
+
+If the shortest path $i\rightarrow{a}$ coincides but does not contain the path $i\rightarrow{b}$, then this "cycle" is longer than the actual cycle formed so this case can be ignored. If $i\rightarrow{a}$ contains $i\rightarrow{b}$, then this is not a cycle at all. But it can easily be checked if the first contains the second, simply by checking if $b$ pushed to $a$ in the bfs.
+
+So, the time complexity is $O(N(N+M))$.
+
 ## Maximum Building I
 This builds on the Advertisement problem. We can fix the bottom row and then calculate the maximum area like this similarly to the aforementioned problem.
 
