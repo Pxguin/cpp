@@ -1,0 +1,10 @@
+## E. + Graph
+Disregard the constraint that labels must be positive, and assume a valid assignment of the graph following these new constraints. We can reach all other valid assignments by picking an arbitrary node $i$ and a value $x$, then adding $x$ to all nodes an even distance from $i$ and subtracting $x$ from all nodes an odd distance from $i$. Let that operation be $f(i,x)$.
+
+The above doesn't work if some node is both an odd and even distance away from $i$; i.e., there exists a cycle of odd length. We can check for such a cycle with DFS and bipartite coloring.
+
+If there is no odd cycle, then there are either zero or infinite possibilities to the system of equations, so we can assign an arbitrary value to an arbitrary node, and then greedily fill in the rest of the graph starting from that node. That gives us one solution to the system. If we run into contradictions, there are zero solutions; otherwise, there are infinite solutions. Now we need to figure out the range of valid $x$ such that when performing $f(1,x)$, all labels have positive values. This can be done with a bit of math.
+
+If there exists an odd cycle, then there are either zero or one solutions to the system. We can find such a solution if it exists by simply trying to fill in the graph starting from an arbitrarily assigned arbitrary node. When we run into a cycle of odd length (for example $i\rightarrow{j}\rightarrow{k}\rightarrow{i})$, then we have guaranteed by the greedy assignment that all edges will be satisfied except for one, which I will assume to be $k\rightarrow{i}$. If we were to add $x$ to $i$, then we would have to subtract $x$ from $j$ and thus add $x$ to $k$. So this operation keeps all other edges in the cycle satisfied while effectively adding $2x$ to the edge between $i$ and $k$; now, we can easily compute the value of $x$ to solve the system (or if $x$ isn't an integer, then there's no solution).
+
+For the odd solution, we still have to verify that all labels are positive. The time complexity of this approach is $O(N+M)$.
