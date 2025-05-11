@@ -18,5 +18,16 @@ Then, we see if the frequency of $j$ in the second subset (which is equal to $fr
 
 Because $\sum{freq}$ remains constant across queries, then there are at most $\sqrt{2N}$ distinct values in $freq$. So a simple two pointers algorithm can compute the best answer in $O(\sqrt{N})$ time per query. Updating all arrays before the calculation takes $O(logN)$, so the total time complexity is $O(NlogN+Q(\sqrt{N}+logN))$.
 
+## 3. OohMoo Milk
+Optimally, FJ adds to the $A$ largest values every day, and FN subtracts from the $B$ largest values after that. Because $B\le{A}$, then the values that FJ adds to remain constant across all days, so we can add $D$ to each of those values.
+
+Now we want to subtract a total of $BD$ from the values to simulate FN's moves. Optimally, subtract from the largest value each time. However, there is the constraint that a value cannot be subtracted from more than $D$ times.
+
+So it's a slight modification of a very common problem.
+
+Time complexity: $O(NlogN)$.
+
 ## Comments:
 1 was very easy. 2 wasn't hard but I missed the $\sqrt{2N}$ observation. 3 just seems annoying because I think you add one to the $[B+1,A]$ largest values every day which seems like a lot of casework.
+
+Update: I decided to try 3 and came up with an (I think) elegant solution.
