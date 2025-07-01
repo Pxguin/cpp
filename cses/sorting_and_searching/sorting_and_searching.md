@@ -20,6 +20,13 @@ $O(NlogN)$ time complexity.
 ## Stick Lengths
 The most optimal length is the median of all the sticks. For an explanation, see the first paragraph of Sliding Window Cost (a problem in this same section). Sorting gives the $O(NlogN)$ complexity.
 
+## Missing Coin Sum
+Sort all coins and perform the following prodecure:
+ - Initialize a counter $c$ to $0$. We say that all sums in the range $[1,c]$ are attainable.
+ - While the front of the list (denoted $x_1$) is $\le{c+1}$, set $c:=c+x_1$ and pop the front of the list (because all sums in the range $[1,c+x]$ are now attainable).
+
+The minimum non-attainable number is $c+1$.
+
 ## Playlist
 Solve with 2 pointers. Iterate over every left endpoint for a sequence, and for each one find the maximum right endpoint such that no two values repeat. First, the repetition can be maintained with a set. Second, the maximum right endpoint must monotonically increase for each left point; if you increase the left endpoint (and remove values from the sequence), then it's impossible that the maximum right endpoint will decrease with it. Because of the set, it takes $O(NlogN)$.
 

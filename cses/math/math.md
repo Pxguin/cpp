@@ -24,6 +24,15 @@ Specifically:
 
 Make sure that you don't overcount any $D$. Also, combining the above two cases together, it's actually easier to say that only $2\sqrt{N}$ distinct values of $f(D)$ exist, so we can do an algorithm like in [Loan Repayment](https://usaco.org/index.php?page=viewproblem2&cpid=991).
 
+## Divisor Analysis
+Number of divisors is equal to $\prod_{i} k_i$.
+
+Sum of divisors is equal to $\prod_{i}(\sum_{j=0}^{k_i}x_i^j)$.
+
+Product is computed through a recurrence: if $P_i$ is the answer for the first $i$ primes, and $D_i$ the number of divisors for the first $i$ primes, then $P_i=P_{i-1}^{k_i+1}\cdot(x_i^{k_i(k_i+1)/2})^{D_{i-1}}$.
+
+(use fermat's little theorem to compute the product of divisors)
+
 ## Prime Multiples
 For every prime, compute all its multiples $\le N$ and store these in a set.
 The answer is the size of the union of all the sets, which can be computed with the Inclusion Exclusion Principle. It takes $O(2^K*K)$.
