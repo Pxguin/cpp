@@ -8,9 +8,15 @@ However, the second digit may not be a $5$; it can also be $4$. Generally, we ca
 ## 2. Farmer John's Cheese Block
 There are only $3$ configurations for the $1\times{N}$ block, which represents a vector parallel to either the x, y, or z axes. There are $N^2$ possible vectors parallel to each axis, so we should store the amount of empty blocks in each vector in each axis. For each query, update the three vectors that it affects, and if we find that that vector is empty, then add one to the answer. $O(N^2+Q)$ time complexity.
 
+## 3. It's Mooin' Time
+Store a table of all possible moos and the maximum possible occurences of them in the string across all possible changes. A moo is valid if the maximum possible occurences of it is $\ge{F}$.
+
+There are only $25N$ possible changes, and each of them affects at most three moos. So brute force solves the problem in $O(\Sigma{N})$.
+
 ## Comments:
 Problem $1$ is quite difficult. It took me probably 30 minutes to figure out the concept but I could not figure out how to check if a number is $\le{N}$ (had to read editorial). Turns out the valid numbers form a range though, which is nice.
 
 Problem $2$ is pretty simple. The giveaway is that once a vector is empty, it stays empty. Also, there are $3N^2$ possible vectors, which is easy to store.
 
 Problem $3$ seems tedious but I may do it sometime...
+(it was annoying.)
