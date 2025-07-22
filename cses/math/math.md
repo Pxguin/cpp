@@ -37,6 +37,15 @@ Product is computed through a recurrence: if $P_i$ is the answer for the first $
 For every prime, compute all its multiples $\le N$ and store these in a set.
 The answer is the size of the union of all the sets, which can be computed with the Inclusion Exclusion Principle. It takes $O(2^K*K)$.
 
+## Fibonacci Numbers
+$F_n=\begin{bmatrix}1 & 1 \\ 1 & 0\end{bmatrix}^n$. $O(logN)$ with matrix expo.
+
+## Graph Paths I
+(Markov chains). Represent the adjacency matrix $T$ and return $T^K_{1,N}$. $O(M+N^3logK)$.
+
+## Graph Paths II
+Instead of matrix multiplication via dot product (i.e. $\sum{a_ib_i}$) use $\min(a_i+b_i)$ combiner function. $O(M+N^3logK)$ (do same thing as Graph Paths I).
+
 ## Candy Lottery
 An expected value problem. The probability of getting a maximum of $M$ is $({M\over{K}})^N-({{M-1}\over{K}})^N$: this is the chance of getting $N$ values at most $M$ minus the chance of getting $N$ values less than $M$. The runtime is $O(NK)$ although you can achieve $O(KlogN)$ with binary exponentiation.
 
