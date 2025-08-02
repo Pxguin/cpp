@@ -1,6 +1,6 @@
 # USACO Plat 2018 Jan
 
-## 3. Cow at Large
+## 2. Cow at Large
 I love this problem and have always wanted to do it. As a bonus it was also my 100th problem on OI Checklist!
 
 Let $leaf_i$ be the minimum distance from $i$ to a leaf. The answer for $i$ ($ans_i$) is the amount of nodes $u$ where out of all nodes $v$ on the path from $i$ to $u$, the only node that satisfies $dist(i,v)\ge{leaf_v}$ is $u$ itself.
